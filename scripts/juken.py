@@ -503,6 +503,26 @@ def render_recommend(cfg):
             + (f'<div class="tips"><h3>出願の組み方</h3><ol>{tips}</ol></div>' if tips else "")) if out else ""
 
 
+def render_compare(cfg):
+    """押さえ候補（MARCH など）の比較表：一般の試験日・共テ利用・ボーダー・手続締切・延納。"""
+    rows = []
+    for x in cfg.get("compare") or []:
+        name = (f'<a href="{e(x["url"])}" target="_blank" rel="noopener">{e(x["name"])}</a>'
+                if x.get("url") else e(x["name"]))
+        ennou = {True: '<i class="ok">できる</i>', False: '<i class="ng">できない</i>'}.get(
+            x.get("ennou"), '<i class="uk">不明</i>')
+        rows.append(f'<tr><th>{name}<small>{e(x.get("faculty", ""))}</small></th>'
+                    f'<td>{"<br>".join(e(t) for t in x.get("exams") or [])}</td>'
+                    f'<td>{e(x.get("kyotesu", ""))}</td><td>{e(x.get("border", ""))}</td>'
+                    f'<td>{e(x.get("deadline", ""))}</td><td>{ennou}<small>{e(x.get("ennou_note", ""))}</small></td></tr>')
+    if not rows:
+        return ""
+    note = cfg["settings"].get("compare_note", "")
+    return ((f'<p class="hint">{e(note)}</p>' if note else "") +
+            '<div class="cmpw"><table class="cmp"><tr><th>大学・学部</th><th>一般選抜の試験日</th><th>共テ利用</th>'
+            f'<th>ボーダー</th><th>入学手続（1次）</th><th>延納<small>国公立の発表まで待てる？</small></th></tr>{"".join(rows)}</table></div>')
+
+
 def render_news(cfg, day):
     news = list(sources.load_json(NEWS_FILE).get("news", {}).values())
     tz = zoneinfo.ZoneInfo(cfg["settings"].get("timezone", "Asia/Tokyo"))
@@ -597,6 +617,7 @@ def render_page(cfg, day, updated):
         ]),
         ("univ", "🎓 大学えらび", "志望校・おすすめ学部", [
             ("targets", "志望校・併願校", f'<div class="tgs">{render_targets(cfg, day)}</div>'),
+            ("compare", "MARCH（押さえ候補）", render_compare(cfg)),
             ("recommend", "おすすめ学部（理系 × 地方国公立）", render_recommend(cfg)),
         ]),
         ("info", "📰 ニュース", "受験ニュース・今年の変更点", [
@@ -751,6 +772,15 @@ a.up:hover b{text-decoration:underline}
 .wk li b{display:block;font:700 12px 'JetBrains Mono',monospace;color:#C8102E}
 .wk li small{display:block;font-size:12.5px;opacity:.75;line-height:1.5}
 .wk a{font-size:12px}
+/* 比較表 */
+.cmpw{overflow-x:auto}
+.cmp{width:100%;min-width:760px;border-collapse:collapse;font-size:13.5px;background:#fff}
+.cmp th,.cmp td{border:1px solid #1A1C22;padding:7px 9px;text-align:left;vertical-align:top;line-height:1.55}
+.cmp tr:first-child th{background:#1A1C22;color:#FBF8F1;font:700 12.5px 'Noto Sans JP',sans-serif}
+.cmp th small,.cmp td small{display:block;font-size:11.5px;font-weight:400;opacity:.75}
+.cmp tr+tr th{font:900 14px 'Noto Sans JP',sans-serif;background:#F4F1EA;white-space:nowrap}
+.cmp i{font:900 11px 'Noto Sans JP',sans-serif;font-style:normal;color:#fff;padding:1px 6px}
+.cmp .ok{background:#2E7D4F}.cmp .ng{background:#C8102E}.cmp .uk{background:#5B6170}
 /* 月カレンダー */
 .ctabs{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:12px}
 .ctabs button{font:700 13px 'Noto Sans JP',sans-serif;border:2px solid #1A1C22;background:#FBF8F1;padding:4px 12px;cursor:pointer;color:#1A1C22}

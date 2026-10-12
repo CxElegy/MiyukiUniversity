@@ -12,6 +12,7 @@
 #            examples: [{name, schedule, border, level（チャレンジ / 実力相応 / 安全寄り）, note, url}]
 # weekly     今週のまとめ：week（その週の月曜）/ learned（新しく分かったこと、3件まで）/ concerns（気になること）。
 #            各項目は文字列か {text, source}。締切はページ側で日程から自動で出す。seiri スキルが毎週書き換える
+# compare    押さえ候補の比較表（MARCH）：name / faculty / url / exams / kyotesu / border / deadline / ennou（true/false/省略=不明）/ ennou_note
 # plan       逆算プラン：from / to / title / goal / todo / color（今日を含む期間がページ上部の「いまやること」）
 # topics     ニュースを集めるテーマ：queries（Google ニュース検索語）/ match（見出しに含むべき語）/ urgent（正規表現、当日 Discord）
 
@@ -28,6 +29,7 @@ settings:
   keep_days: 120
   page_url: https://cxelegy.github.io/MiyukiUniversity/
   exclude: ["高校入試|高校受験|公立高校|中学受験|中学入試|小学校受験|国家試験|社会保険労務士|資格試験|韓国|中国の大学|塾.{0,4}選"]
+  compare_note: 試験日は大学提供の2027年度情報（Kei-Net）。正式な募集要項は11月上旬に出るので、そこで最終確認。ボーダーは河合塾 Kei-Net の2027年度予想。延納は去年の手続要項をもとにした目安。
   recommend_note: 理系 × 地方国公立の候補。ボーダーは河合塾 Kei-Net の「2027年度入試」予想（共テ得点率・二次偏差値、合格可能性50%）。日東駒専〜GMARCH 理工レベルなら共テ55〜65%が実力相応の目安。日程・科目は各大学の募集要項（10〜12月公表）で必ず確認。
 
 weekly:
@@ -200,6 +202,51 @@ schedule:
     kind: 私立
     note: 文科省ルールでは個別試験は2/1〜3/25
     source: https://www.mext.go.jp/content/20260529-mxt_daigakuc02-100001251_1.pdf
+
+  # ---- MARCH（押さえ候補）出典：Kei-Net 大学提供の2027年度情報 ----
+  - date: 2027-01-15
+    title: MARCH 共テ利用の出願締切（明治・青学・立教・中央・法政）
+    short: MARCH共テ利用〆
+    kind: 私立
+    remind: true
+    source: https://search.keinet.ne.jp/2286/topics/12
+  - date: 2027-02-05
+    title: 明治 全学部統一／法政 T日程（同じ日）
+    short: 明治統一・法政T
+    kind: 私立
+  - date: 2027-02-06
+    title: 立教 理学部（1回目）
+    short: 立教 理
+    kind: 私立
+  - date: 2027-02-07
+    title: 明治 理工 学部別／青学 全学部（同じ日）
+    short: 明治理工・青学全
+    kind: 私立
+  - date: 2027-02-08
+    title: 中央 理工系 共テ併用
+    short: 中央 併用
+    kind: 私立
+  - date: 2027-02-09
+    title: 立教 理学部（2回目）
+    short: 立教 理②
+    kind: 私立
+  - date: 2027-02-10
+    end: 2027-02-11
+    title: 青学 理工 個別A（2/10）・B（2/11）／法政 A方式Ⅰ（2/11）
+    short: 青学個別・法政A
+    kind: 私立
+  - date: 2027-02-14
+    end: 2027-02-15
+    title: 法政 A方式Ⅱ（2/14）／中央 一般方式（2/15）
+    short: 法政AⅡ・中央
+    kind: 私立
+  - date: 2027-02-22
+    end: 2027-03-05
+    title: MARCH 入学手続（1次）の締切が続く（明治2/24・青学2/22〜25・立教3/1・中央2/19〜3/5・法政2/15〜26）
+    short: MARCH手続〆
+    kind: 手続き
+    remind: true
+    note: 明治・青学・中央は入学金だけで国公立の発表まで待てる（去年の要項）。立教・法政は要確認
 
   # ---- 模試・英検 ----
   - date: 2026-10-18
@@ -514,3 +561,48 @@ plan:
       - 3/12〜 後期試験
       - 3/20〜 後期・中期の発表 → 3/27 までに手続
       - 住まい探し・入学の準備
+
+compare:
+  - name: 明治大学
+    faculty: 理工学部
+    url: https://search.keinet.ne.jp/2286/topics/12
+    exams: ["全学部統一 2/5（金）", "学部別 2/7（日）", "発表 2/15（月）"]
+    kyotesu: 締切 1/15・発表 2/15（3〜4教科）
+    border: 共テ 79〜82%・偏差値 60.0（機械工）
+    deadline: 2/24（水）
+    ennou: true
+    ennou_note: 入学金（約20万円）だけ先に払い、残りは3/25ごろまで待てる（去年の要項）
+  - name: 青山学院大学
+    faculty: 理工学部
+    url: https://search.keinet.ne.jp/2200/topics/12
+    exams: ["全学部 2/7（日）", "個別A 2/10（水）", "個別B 2/11（木）", "発表 2/15・2/17"]
+    kyotesu: 締切 1/15・発表 2/18
+    border: —
+    deadline: 全学部 2/22・個別 2/24・共テ 2/25
+    ennou: true
+    ennou_note: 入学申込金（約20万円）だけ先に払えば3/16ごろまで待てる（去年の要項）
+  - name: 立教大学
+    faculty: 理学部
+    url: https://search.keinet.ne.jp/2290/topics/12
+    exams: ["2/6（土）・2/9（火）のうち最大2回", "発表 2/20（土）"]
+    kyotesu: 締切 1/15・発表 2/17（4科目型 or 6科目型）
+    border: 共テ 77〜78%・偏差値 57.5（物理）
+    deadline: 3/1（月）
+    ennou_note: 確認できず。学費まで払い、3/31までに辞退すれば入学金以外が戻る形の可能性
+  - name: 中央大学
+    faculty: 先進理工・基幹理工・社会理工（2026年に再編）
+    url: https://search.keinet.ne.jp/2242/topics/12
+    exams: ["共テ併用 2/8（月）", "一般方式 2/15（月）", "発表 2/19・2/26"]
+    kyotesu: 締切 1/15・発表 2/13（3教科）
+    border: 共テ 79%・偏差値 57.5（精密機械工）
+    deadline: 共テ 2/19・併用 3/1・一般 3/5
+    ennou: true
+    ennou_note: 入学申込金（約24万円）だけ払えば、残りは3/25ごろまで待てる（去年の要項）
+  - name: 法政大学
+    faculty: 理工学部
+    url: https://search.keinet.ne.jp/2279/topics/12
+    exams: ["T日程 2/5（金）", "A方式Ⅰ 2/11（木）", "A方式Ⅱ 2/14（日）", "発表 2/16〜2/22"]
+    kyotesu: 締切 1/15・発表 2/9（B方式3教科）
+    border: 共テ 71〜72%・偏差値 52.5〜55.0（機械工）
+    deadline: T 2/19・A-Ⅰ 2/25・A-Ⅱ 2/26・共テ 2/15
+    ennou_note: 確認できず（11月の要項で確認）
