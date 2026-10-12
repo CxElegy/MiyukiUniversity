@@ -523,6 +523,22 @@ def render_compare(cfg):
             f'<th>ボーダー</th><th>入学手続（1次）</th><th>延納<small>国公立の発表まで待てる？</small></th></tr>{"".join(rows)}</table></div>')
 
 
+def render_flow(cfg):
+    """出願の流れ：ルート（国公立・私大一般・共テ利用・合格後）ごとに、いつ・何をするかを順番に。"""
+    out = []
+    for r in cfg.get("flow") or []:
+        steps = "".join(
+            f'<li><span class="fw">{e(x.get("when", ""))}</span><b>{e(x["what"])}</b>'
+            f'{"<small>" + e(x["detail"]) + "</small>" if x.get("detail") else ""}</li>' for x in r.get("steps") or [])
+        out.append(f'<div class="fl" style="--c:{r.get("color", "#1A1C22")}"><h3>{e(r["title"])}</h3>'
+                   f'{"<p>" + e(r["lead"]) + "</p>" if r.get("lead") else ""}<ol>{steps}</ol></div>')
+    common = "".join(f"<li>{e(x)}</li>" for x in cfg.get("flow_common") or [])
+    if not out:
+        return ""
+    return (f'<div class="fls">{"".join(out)}</div>'
+            + (f'<div class="tips"><h3>どのルートでも用意するもの</h3><ul>{common}</ul></div>' if common else ""))
+
+
 def render_news(cfg, day):
     news = list(sources.load_json(NEWS_FILE).get("news", {}).values())
     tz = zoneinfo.ZoneInfo(cfg["settings"].get("timezone", "Asia/Tokyo"))
@@ -624,7 +640,8 @@ def render_page(cfg, day, updated):
             ("changes", "今年の変更点（これだけは知っておく）", render_changes(cfg)),
             ("news", "受験ニュース", f'<div class="nts">{render_news(cfg, day)}</div>'),
         ]),
-        ("prep", "✏️ 本番の準備", "時間割・やることリスト・リンク", [
+        ("prep", "✏️ 出願・準備", "出願の流れ・時間割・やることリスト", [
+            ("flow", "出願の流れ（どうやって出願するの？）", render_flow(cfg)),
             ("tt", "共通テストの時間割", f'<div class="tts">{render_timetable(cfg)}</div>'),
             ("check", "やることリスト", f'<p class="hint">チェックはこの端末のブラウザに保存されます。</p>'
                                       f'<div class="cks">{render_checklist(cfg)}</div>'),
@@ -781,6 +798,19 @@ a.up:hover b{text-decoration:underline}
 .cmp tr+tr th{font:900 14px 'Noto Sans JP',sans-serif;background:#F4F1EA;white-space:nowrap}
 .cmp i{font:900 11px 'Noto Sans JP',sans-serif;font-style:normal;color:#fff;padding:1px 6px}
 .cmp .ok{background:#2E7D4F}.cmp .ng{background:#C8102E}.cmp .uk{background:#5B6170}
+/* 出願の流れ */
+.fls{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+.fl{background:#fff;border:2px solid #1A1C22;border-top:8px solid var(--c);padding:12px 16px}
+.fl h3{margin:0;font:900 17px 'Noto Sans JP',sans-serif;color:var(--c)}
+.fl>p{margin:4px 0 0;font-size:13px;line-height:1.6;opacity:.8}
+.fl ol{list-style:none;counter-reset:st;margin:10px 0 0;padding:0}
+.fl li{counter-increment:st;position:relative;padding:0 0 12px 34px;font-size:13.5px;line-height:1.55}
+.fl li::before{content:counter(st);position:absolute;left:0;top:0;width:24px;height:24px;border-radius:50%;
+ background:var(--c);color:#fff;font:900 12px/24px 'Noto Sans JP',sans-serif;text-align:center}
+.fl li:not(:last-child)::after{content:"";position:absolute;left:11px;top:26px;bottom:2px;border-left:2px solid color-mix(in srgb,var(--c) 35%,#fff)}
+.fl .fw{display:block;font:700 12px 'JetBrains Mono','Noto Sans JP',monospace;color:var(--c)}
+.fl b{display:block;font:700 14px/1.5 'Noto Sans JP',sans-serif}
+.fl small{display:block;font-size:12.5px;opacity:.8}
 /* 月カレンダー */
 .ctabs{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:12px}
 .ctabs button{font:700 13px 'Noto Sans JP',sans-serif;border:2px solid #1A1C22;background:#FBF8F1;padding:4px 12px;cursor:pointer;color:#1A1C22}
