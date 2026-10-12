@@ -1,0 +1,62 @@
+name: 受験通信
+
+# 2時間ごと：ニュース収集 → 日程のリマインド・重要ニュースを Discord へ → ページ（docs/index.html）を更新
+# juken.yaml やスクリプトを push したときもすぐ1回動く
+
+on:
+  schedule:
+    - cron: "23 */2 * * *"   # 2時間ごと（UTC の偶数時 23分）
+  push:
+    branches: [main]
+    paths: ["juken.yaml", "scripts/**", ".github/**", "requirements.txt"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - run: pip install -r requirements.txt
+
+      - name: テスト
+        run: python -m unittest discover tests
+
+      - name: 収集・リマインド・ページ生成
+        run: python scripts/juken.py
+
+      - name: コミット（docs/ を GitHub Pages で公開）
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add state docs
+          git diff --cached --quiet && exit 0
+          git commit -m "更新 $(TZ=Asia/Tokyo date +'%F %H:%M')"
+          # 実行中にほかの push があったら取り込んでからページを作り直す（最大3回）
+          for i in 1 2 3; do
+            if git pull --rebase -X theirs -q; then
+              python scripts/juken.py render
+              git add docs
+              git diff --cached --quiet || git commit -q -m "ページを再生成"
+              git push && exit 0
+            else
+              git rebase --abort || true
+            fi
+            sleep $((i * 5))
+          done
+          exit 1
