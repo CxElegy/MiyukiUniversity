@@ -10,6 +10,8 @@
 #            keywords: ニュース検索語（省略すると「大学名 入試」）
 # recommend  おすすめ学部：field / why / kyotsu（共テ科目）/ niji（二次科目）/ color /
 #            examples: [{name, schedule, border, level（チャレンジ / 実力相応 / 安全寄り）, note, url}]
+# weekly     今週のまとめ：week（その週の月曜）/ learned（新しく分かったこと、3件まで）/ concerns（気になること）。
+#            各項目は文字列か {text, source}。締切はページ側で日程から自動で出す。seiri スキルが毎週書き換える
 # plan       逆算プラン：from / to / title / goal / todo / color（今日を含む期間がページ上部の「いまやること」）
 # topics     ニュースを集めるテーマ：queries（Google ニュース検索語）/ match（見出しに含むべき語）/ urgent（正規表現、当日 Discord）
 
@@ -27,6 +29,19 @@ settings:
   page_url: https://cxelegy.github.io/MiyukiUniversity/
   exclude: ["高校入試|高校受験|公立高校|中学受験|中学入試|小学校受験|国家試験|社会保険労務士|資格試験|韓国|中国の大学|塾.{0,4}選"]
   recommend_note: 理系 × 地方国公立の候補。ボーダーは河合塾 Kei-Net の「2027年度入試」予想（共テ得点率・二次偏差値、合格可能性50%）。日東駒専〜GMARCH 理工レベルなら共テ55〜65%が実力相応の目安。日程・科目は各大学の募集要項（10〜12月公表）で必ず確認。
+
+weekly:
+  week: 2026-10-12
+  learned:
+    - text: 共テの出願者は 490,725人（去年より547人少ない）。現役は減って、浪人が増えた。
+      source: https://resemom.jp/article/2026/10/07/87799.html
+    - text: 登録した教科・科目が志望校の条件と合っているか、訂正期間（〜10/16）に見直すよう呼びかけ。理系国公立は基本6教科8科目（情報Ⅰ・理科2科目を含む）。
+      source: https://www.dnc.ac.jp/kyotsu/shiken_jouhou/r9/r9_jukenannai.html
+    - text: 総合型選抜の合格発表は11月から。入学しなかった大学に払った入学金は、原則もどらない。
+  concerns:
+    - 東洋大 基礎学力テスト型の「一次手続 12/18」は共テより前。このとき入学金を払うのか、募集要項で確認する。
+    - 東洋大の手続締切（2/26）は国公立前期の発表（3/6〜）より前。押さえに入学金を払うか、家族で先に決めておく。
+    - 英検 第3回の一次（1/24）は共テ追試と同じ日で、結果も2/15。今季は使わない前提でOK。
 
 schedule:
   # ---- 共通テスト（令和9年度）出典：大学入試センター 受験案内・実施要項 ----

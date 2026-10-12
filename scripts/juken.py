@@ -411,6 +411,34 @@ def render_plan(phases, day):
             f'{fold(later, "その先の期間")}</div>')
 
 
+def render_weekly(cfg, evs, day):
+    """今週のまとめ：今週（月〜日）の締切は日程から自動で、「新しく分かったこと」「気になること」は
+    juken.yaml の weekly（seiri スキルが毎週書く）から。weekly が先週より古ければ締切だけ出す。"""
+    mon = day - dt.timedelta(days=day.weekday())
+    sun = mon + dt.timedelta(days=6)
+    due = [ev for ev in evs if mon <= ev["end"] <= sun or mon <= ev["start"] <= sun]
+    w = cfg.get("weekly") or {}
+    fresh = w.get("week") and 0 <= (mon - _date(w["week"])).days < 7
+
+    def item(x):
+        text = e(x["text"] if isinstance(x, dict) else x)
+        url = x.get("source") if isinstance(x, dict) else ""
+        link = f' <a href="{e(url)}" target="_blank" rel="noopener">出典</a>' if url else ""
+        return f"<li>{text}{link}</li>"
+
+    cols = []
+    rows = "".join(f'<li><b>{fmt_span(ev) if ev["start"] >= mon else "〜" + fmt_day(ev["end"])}</b>'
+                   f'{e(ev["title"])}{"<small>" + e(ev["note"]) + "</small>" if ev["note"] else ""}</li>' for ev in due)
+    cols.append(("📌 今週の締切・予定", rows or "<li>今週の締切はありません</li>"))
+    if fresh:
+        if w.get("learned"):
+            cols.append(("💡 新しく分かったこと", "".join(item(x) for x in w["learned"])))
+        if w.get("concerns"):
+            cols.append(("⚠️ 気になること", "".join(item(x) for x in w["concerns"])))
+    body = "".join(f'<div class="wk"><h3>{h}</h3><ul>{li}</ul></div>' for h, li in cols)
+    return (f'<p class="hint">{fmt_day(mon)}〜{fmt_day(sun)}</p><div class="wks">{body}</div>')
+
+
 def render_upcoming(evs, day, limit=5):
     rest = [ev for ev in evs if ev["end"] >= day]
     soon = rest[:limit]
@@ -557,6 +585,7 @@ def render_page(cfg, day, updated):
     who = s.get("name", "")
     top = [
         ("now", "いまやること", render_now(phases, day)),
+        ("week", "今週のまとめ", render_weekly(cfg, evs, day)),
         ("next", "次の締切", f'<div class="ups">{render_upcoming(evs, day)}</div>'),
     ]
     # タブ：(id, ボタン名, ひとこと, [(section id, 見出し, 中身)])
@@ -713,6 +742,15 @@ a.up:hover b{text-decoration:underline}
 .bar.ph{top:5px;height:20px;background:color-mix(in srgb,var(--c) 30%,#fff);border-width:2px}
 .nowph .bar.ph{background:var(--c)}
 .nowph .gl{background:#FFF4F4}
+/* 今週のまとめ */
+.wks{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+.wk{background:#fff;border:2px solid #1A1C22;padding:10px 14px}
+.wk h3{margin:0 0 6px;font:900 15px 'Noto Sans JP',sans-serif;letter-spacing:.05em}
+.wk ul{margin:0;padding-left:1.1em;font-size:14px;line-height:1.7}
+.wk li{margin-bottom:6px}
+.wk li b{display:block;font:700 12px 'JetBrains Mono',monospace;color:#C8102E}
+.wk li small{display:block;font-size:12.5px;opacity:.75;line-height:1.5}
+.wk a{font-size:12px}
 /* 月カレンダー */
 .ctabs{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:12px}
 .ctabs button{font:700 13px 'Noto Sans JP',sans-serif;border:2px solid #1A1C22;background:#FBF8F1;padding:4px 12px;cursor:pointer;color:#1A1C22}

@@ -115,6 +115,18 @@ class JukenTest(unittest.TestCase):
         # どの期間にも入らない日は「いまやること」を出さない
         self.assertNotIn('class="nowbox"', juken.render_page(cfg(), dt.date(2027, 1, 5), ""))
 
+    def test_weekly_summary(self):
+        c = cfg()
+        c["weekly"] = {"week": "2027-01-11", "learned": [{"text": "平均点の発表", "source": "https://example.com"}],
+                       "concerns": ["追試と英検が同じ日"]}
+        page = juken.render_page(c, dt.date(2027, 1, 13), "")
+        self.assertIn("今週のまとめ", page)
+        self.assertIn("共通テスト本試験", page.split('id="week"')[1].split("</section>")[0])  # 1/16 は今週
+        self.assertIn("追試と英検が同じ日", page)
+        # 2週間前のまとめは出さない（締切だけ）
+        later = juken.render_page(c, dt.date(2027, 1, 27), "")
+        self.assertNotIn("追試と英検が同じ日", later)
+
     def test_gantt_positions_inside_season(self):
         html = juken.render_gantt(juken.events(cfg()), dt.date(2026, 12, 9),
                                   dt.date(2026, 10, 1), dt.date(2027, 3, 31))
