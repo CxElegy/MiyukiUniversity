@@ -31,7 +31,7 @@ NEWS_FILE = sources.STATE_DIR / "news.json"
 NOTIFIED_FILE = sources.STATE_DIR / "notified.json"
 PAGE_FILE = sources.DOCS_DIR / "index.html"
 WEEK = "月火水木金土日"
-NEWS_ON_PAGE = 8  # テーマごとに最初から見せる件数（残りは「もっと見る」に畳む）
+NEWS_ON_PAGE = 5  # テーマごとに最初から見せる件数（残りは「もっと見る」に畳む）
 
 # 日程の種類 → 色（カレンダーの印、ガントチャートのバー、リマインドの色帯）
 KINDS = {
@@ -384,27 +384,36 @@ def render_now(phases, day):
     left = (cur["end"] - day).days
     todo = "".join(f'<li><label><input type="checkbox" data-k="now-{e(cur["title"])}-{e(x)}"><span>{e(x)}</span></label></li>'
                    for x in cur["todo"])
-    return (f'<div class="nowbox" style="--c:{cur["color"]}"><div class="nh"><small>いまやること</small>'
+    return (f'<div class="nowbox" style="--c:{cur["color"]}"><div class="nh">'
             f'<b>{e(cur["title"])}</b><span>{fmt_day(cur["start"])}〜{fmt_day(cur["end"])}・この期間あと{left + 1}日</span></div>'
             f'<div class="nb">{"<p>🎯 " + e(cur["goal"]) + "</p>" if cur["goal"] else ""}<ul class="ckl">{todo}</ul></div></div>')
 
 
 def render_plan(phases, day):
-    """逆算プラン：期間ごとのカード。終わった期間は薄く、今の期間に「いまここ」。"""
-    out = []
+    """逆算プラン：期間ごとのカード。今の期間と次の期間だけ開いて見せ、済んだ期間・その先の期間は畳む。"""
+    done, shown, later = [], [], []
     for ph in phases:
         state = "done" if ph["end"] < day else "cur" if ph["start"] <= day else "todo"
         badge = {"done": "済", "cur": "いまここ", "todo": f"あと{(ph['start'] - day).days}日で開始"}[state]
         todo = "".join(f"<li>{e(x)}</li>" for x in ph["todo"])
-        out.append(f'<div class="pl {state}" style="--c:{ph["color"]}"><div class="pd">'
-                   f'<b>{fmt_day(ph["start"])}</b><span>〜{fmt_day(ph["end"])}</span><i>{badge}</i></div>'
-                   f'<div class="pc"><h3>{e(ph["title"])}</h3>{"<p>🎯 " + e(ph["goal"]) + "</p>" if ph["goal"] else ""}'
-                   f'<ul>{todo}</ul></div></div>')
-    return f'<div class="pls">{"".join(out)}</div>' if out else ""
+        if state == "cur":  # 今の期間のやることはページ上部の「いまやること」と同じなので繰り返さない
+            todo = '<li class="see"><a href="#now">↑ ページ上部の「いまやること」でチェック</a></li>'
+        card = (f'<div class="pl {state}" style="--c:{ph["color"]}"><div class="pd">'
+                f'<b>{fmt_day(ph["start"])}</b><span>〜{fmt_day(ph["end"])}</span><i>{badge}</i></div>'
+                f'<div class="pc"><h3>{e(ph["title"])}</h3>{"<p>🎯 " + e(ph["goal"]) + "</p>" if ph["goal"] else ""}'
+                f'<ul>{todo}</ul></div></div>')
+        (done if state == "done" else shown if len(shown) < 2 else later).append(card)
+    if not (done or shown or later):
+        return ""
+    fold = lambda cards, label: (f'<details class="plf"><summary>{label}（{len(cards)}）</summary>{"".join(cards)}</details>'
+                                 if cards else "")
+    return (f'<div class="pls">{fold(done, "終わった期間")}{"".join(shown)}'
+            f'{fold(later, "その先の期間")}</div>')
 
 
-def render_upcoming(evs, day, limit=8):
-    soon = [ev for ev in evs if ev["end"] >= day][:limit]
+def render_upcoming(evs, day, limit=5):
+    rest = [ev for ev in evs if ev["end"] >= day]
+    soon = rest[:limit]
     if not soon:
         return '<p class="empty">今シーズンの日程はすべて終わりました。おつかれさま！</p>'
     out = []
@@ -418,6 +427,8 @@ def render_upcoming(evs, day, limit=8):
         out.append(f'<{tag} class="up{hot}" style="--c:{ev["color"]}"{link}><span class="n">{label}</span>'
                    f'<span class="t"><b>{e(ev["title"])}{tent}</b><small>{fmt_span(ev)}'
                    f'{"　" + e(ev["note"]) if ev["note"] else ""}</small></span></{tag}>')
+    if len(rest) > limit:
+        out.append(f'<a class="up more" href="#cal" data-go="sched">ほか {len(rest) - limit} 件 → カレンダー・ガントチャートで見る</a>')
     return "".join(out)
 
 
@@ -544,28 +555,46 @@ def render_page(cfg, day, updated):
                      if any(ev["kind"] == k for ev in evs))
     title = s.get("title", "受験通信")
     who = s.get("name", "")
-    sections = [
+    top = [
         ("now", "いまやること", render_now(phases, day)),
-        ("next", "次の予定", f'<div class="ups">{render_upcoming(evs, day)}</div>'),
-        ("plan", "逆算プラン", render_plan(phases, day)),
-        ("cal", "月カレンダー", f'<div class="legend">{legend}</div>{render_calendar(evs, day, start, end)}'),
-        ("gantt", "受験ガントチャート", f'<div class="legend">{legend}</div>{render_gantt(evs, day, start, end, phases)}'),
-        ("targets", "志望校", f'<div class="tgs">{render_targets(cfg, day)}</div>'),
-        ("recommend", "おすすめ学部", render_recommend(cfg)),
-        ("news", "受験ニュース", f'<div class="nts">{render_news(cfg, day)}</div>'),
-        ("tt", "共通テスト 時間割", f'<div class="tts">{render_timetable(cfg)}</div>'),
-        ("changes", "今年の変更点・注意", render_changes(cfg)),
-        ("check", "やることリスト", f'<p class="hint">チェックはこの端末のブラウザに保存されます。</p>'
-                                  f'<div class="cks">{render_checklist(cfg)}</div>'),
-        ("links", "公式サイト・リンク", f'<div class="lks">{render_links(cfg)}</div>'),
+        ("next", "次の締切", f'<div class="ups">{render_upcoming(evs, day)}</div>'),
     ]
-    body = "".join(f'<section id="{sid}"><h2>{name}</h2>{inner}</section>'
-                   for sid, name, inner in sections if inner)
-    nav = "".join(f'<a href="#{sid}">{name}</a>' for sid, name, inner in sections if inner)
+    # タブ：(id, ボタン名, ひとこと, [(section id, 見出し, 中身)])
+    tabs = [
+        ("sched", "📅 スケジュール", "逆算プラン・カレンダー・ガントチャート", [
+            ("plan", "逆算プラン", render_plan(phases, day)),
+            ("cal", "月カレンダー", f'<div class="legend">{legend}</div>{render_calendar(evs, day, start, end)}'),
+            ("gantt", "ガントチャート", f'<div class="legend">{legend}</div>{render_gantt(evs, day, start, end, phases)}'),
+        ]),
+        ("univ", "🎓 大学えらび", "志望校・おすすめ学部", [
+            ("targets", "志望校・併願校", f'<div class="tgs">{render_targets(cfg, day)}</div>'),
+            ("recommend", "おすすめ学部（理系 × 地方国公立）", render_recommend(cfg)),
+        ]),
+        ("info", "📰 ニュース", "受験ニュース・今年の変更点", [
+            ("changes", "今年の変更点（これだけは知っておく）", render_changes(cfg)),
+            ("news", "受験ニュース", f'<div class="nts">{render_news(cfg, day)}</div>'),
+        ]),
+        ("prep", "✏️ 本番の準備", "時間割・やることリスト・リンク", [
+            ("tt", "共通テストの時間割", f'<div class="tts">{render_timetable(cfg)}</div>'),
+            ("check", "やることリスト", f'<p class="hint">チェックはこの端末のブラウザに保存されます。</p>'
+                                      f'<div class="cks">{render_checklist(cfg)}</div>'),
+            ("links", "公式サイト・リンク", f'<div class="lks">{render_links(cfg)}</div>'),
+        ]),
+    ]
+
+    def sec(sid, name, inner):
+        return f'<section id="{sid}"><h2>{name}</h2>{inner}</section>' if inner else ""
+
+    body = "".join(sec(*x) for x in top)
+    nav = "".join(f'<button data-tab="{tid}"><b>{label}</b><small>{e(hint)}</small></button>'
+                  for tid, label, hint, _ in tabs)
+    body += (f'<nav class="tabs" id="tabs">{nav}</nav>' + "".join(
+        f'<div class="panel" id="tab-{tid}" data-tab="{tid}"><h2 class="ptitle">{label}</h2>'
+        f'{"".join(sec(*x) for x in parts)}</div>' for tid, label, _, parts in tabs))
     return PAGE.format(
         title=e(f"{who}の{title}" if who else title), year=e(str(s.get("year_label", ""))),
         heading=e(title), who=e(who), updated=e(updated), today=fmt_day(day, year=True),
-        countdowns=countdowns(cfg, evs, day), nav=nav, body=body, css=CSS, js=JS,
+        countdowns=countdowns(cfg, evs, day), body=body, css=CSS, js=JS,
     )
 
 
@@ -594,7 +623,6 @@ PAGE = """<!doctype html>
  <div class="meta"><span class="mono">TODAY</span><b>{today}</b><span class="mono">更新 {updated}</span></div>
 </div></header>
 <div class="cnts">{countdowns}</div>
-<nav class="nav">{nav}</nav>
 {body}
 <footer class="mono">ニュースは Google ニュースから2時間ごとに自動収集 · 日程は juken.yaml（公式発表をもとに手入力。必ず各大学の募集要項で確認してください）</footer>
 </div>
@@ -623,9 +651,22 @@ a{color:inherit}
 .cnt small{font:700 13px 'Noto Sans JP',sans-serif;letter-spacing:.1em}
 .cnt b{font:900 64px/1 'Noto Sans JP',sans-serif;color:var(--c)}
 .cnt b span{font-size:22px;margin-left:4px;color:#1A1C22}
-.nav{display:flex;flex-wrap:wrap;gap:8px}
-.nav a{text-decoration:none;font:700 13px 'Noto Sans JP',sans-serif;padding:6px 12px;border:2px solid #1A1C22;background:#FBF8F1}
-.nav a:hover{background:#1A1C22;color:#FBF8F1}
+.tabs{position:sticky;top:0;z-index:5;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;
+ border:3px solid #1A1C22;background:#1A1C22;margin-top:8px;box-shadow:0 6px 0 #EDEBE6}
+.tabs button{appearance:none;border:none;border-right:2px solid #1A1C22;background:#FBF8F1;color:#1A1C22;cursor:pointer;
+ padding:10px 8px;display:flex;flex-direction:column;align-items:center;gap:2px;font-family:inherit}
+.tabs button:last-child{border-right:none}
+.tabs button b{font:900 16px 'Noto Sans JP',sans-serif;letter-spacing:.05em}
+.tabs button small{font-size:11px;opacity:.7}
+.tabs button.on{background:#C8102E;color:#fff}
+.tabs button.on small{opacity:.9}
+.panel{display:flex;flex-direction:column;gap:24px}
+.ptitle{display:none}
+.js-tabs .panel{display:none}.js-tabs .panel.on{display:flex}
+html:not(.js-tabs) .ptitle{display:block;margin:12px 0 -8px;font:900 24px 'Noto Sans JP',sans-serif}
+.up.more{justify-content:center;font:700 13px 'Noto Sans JP',sans-serif;border-left-width:2px;background:#F4F1EA}
+.plf{margin:4px 0 8px 18px}
+.plf summary{font:700 13px 'Noto Sans JP',sans-serif;padding:6px 0;opacity:.75}
 section{background:#FBF8F1;border:3px solid #1A1C22;padding:0 0 20px;scroll-margin-top:12px}
 section>h2{margin:0 0 18px;padding:10px 20px;background:#1A1C22;color:#FBF8F1;font:900 20px 'Noto Sans JP',sans-serif;letter-spacing:.25em}
 section>*:not(h2){margin-left:20px;margin-right:20px}
@@ -668,6 +709,7 @@ a.up:hover b{text-decoration:underline}
 .pc h3{margin:0;font:900 17px 'Noto Sans JP',sans-serif;color:var(--c)}
 .pc p{margin:4px 0;font:700 13.5px/1.6 'Noto Sans JP',sans-serif}
 .pc ul{margin:4px 0 0;padding-left:1.2em;font-size:13.5px;line-height:1.7}
+.pc li.see{list-style:none;margin-left:-1.2em;font-weight:700}
 .bar.ph{top:5px;height:20px;background:color-mix(in srgb,var(--c) 30%,#fff);border-width:2px}
 .nowph .bar.ph{background:var(--c)}
 .nowph .gl{background:#FFF4F4}
@@ -794,6 +836,9 @@ footer{font-size:11px;opacity:.7;line-height:1.7}
  .ev{font-size:9.5px;padding:1px 2px}
  .nts,.tts,.tgs,.rcs{grid-template-columns:1fr}
  .nowbox .nh{flex-basis:100%}
+ .tabs button{padding:8px 2px}
+ .tabs button b{font-size:13px}
+ .tabs button small{display:none}
  .pd{flex-basis:76px;font-size:11.5px}
  .pls{margin-left:16px!important}
  section>*:not(h2){margin-left:12px;margin-right:12px}
@@ -803,6 +848,25 @@ footer{font-size:11px;opacity:.7;line-height:1.7}
 
 JS = """
 (function(){
+ var panels=[].slice.call(document.querySelectorAll('.panel')),btns=[].slice.call(document.querySelectorAll('.tabs button'));
+ if(panels.length){
+  document.documentElement.classList.add('js-tabs');
+  function open(t,scroll){
+   panels.forEach(function(p){p.classList.toggle('on',p.dataset.tab===t)});
+   btns.forEach(function(b){b.classList.toggle('on',b.dataset.tab===t)});
+   try{localStorage.setItem('juken-tab',t)}catch(_){}
+   if(scroll)document.getElementById('tabs').scrollIntoView({behavior:'smooth'});
+  }
+  btns.forEach(function(b){b.onclick=function(){open(b.dataset.tab,true)}});
+  function fromHash(){
+   var el=location.hash&&document.getElementById(location.hash.slice(1));
+   var p=el&&el.closest('.panel');
+   if(p){open(p.dataset.tab);el.scrollIntoView();return true}
+  }
+  window.addEventListener('hashchange',fromHash);
+  var saved=null;try{saved=localStorage.getItem('juken-tab')}catch(_){}
+  if(!fromHash())open(panels.some(function(p){return p.dataset.tab===saved})?saved:panels[0].dataset.tab);
+ }
  var cal=document.querySelector('.cal');
  if(cal){
   cal.classList.add('js');

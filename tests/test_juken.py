@@ -98,7 +98,8 @@ class JukenTest(unittest.TestCase):
     def test_render_page(self):
         page = juken.render_page(cfg(), dt.date(2026, 12, 9), "2026-12-09 12:00")
         self.assertIn('data-cur="2026-12"', page)              # 今月のカレンダーを最初に表示
-        self.assertIn("受験ガントチャート", page)
+        self.assertIn("ガントチャート", page)
+        self.assertEqual(page.count('class="panel"'), 4)              # 4つのタブ
         self.assertIn("テ大 個別試験", page)
         self.assertIn('class="cnt"', page)                      # カウントダウン
         self.assertIn(">38<", page)                             # 12/9 → 1/16 は 38 日
