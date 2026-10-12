@@ -523,6 +523,33 @@ def render_compare(cfg):
             f'<th>ボーダー</th><th>入学手続（1次）</th><th>延納<small>国公立の発表まで待てる？</small></th></tr>{"".join(rows)}</table></div>')
 
 
+def render_roles(cfg, day):
+    """役割分担のレーン図：行＝人（美幸・家族・先生・大学）、列＝時期。今の時期の列を強調し、済んだ列は薄く。"""
+    r = cfg.get("roles") or {}
+    lanes, steps = r.get("lanes") or [], r.get("steps") or []
+    if not (lanes and steps):
+        return ""
+    head = ""
+    for st in steps:
+        a, b = _date(st["from"]), _date(st["to"])
+        state = "done" if b < day else "cur" if a <= day else ""
+        mark = '<i>いまここ</i>' if state == "cur" else ""
+        head += f'<th class="{state}">{mark}<b>{e(st["label"])}</b><small>{a.month}/{a.day}〜{b.month}/{b.day}</small></th>'
+    rows = ""
+    for ln in lanes:
+        cells = ""
+        for st in steps:
+            a, b = _date(st["from"]), _date(st["to"])
+            state = "done" if b < day else "cur" if a <= day else ""
+            items = "".join(f"<li>{e(x)}</li>" for x in st.get(ln["key"]) or [])
+            cells += f'<td class="{state}"><ul>{items}</ul></td>'
+        rows += (f'<tr style="--c:{ln.get("color", "#1A1C22")}"><th class="who"><span>{e(ln.get("icon", ""))}</span>'
+                 f'<b>{e(ln["name"])}</b><small>{e(ln.get("role", ""))}</small></th>{cells}</tr>')
+    note = r.get("note", "")
+    return ((f'<p class="hint">{e(note)}</p>' if note else "")
+            + f'<div class="rlw"><table class="rl"><tr><th class="who"></th>{head}</tr>{rows}</table></div>')
+
+
 def render_flow(cfg):
     """出願の流れ：ルート（国公立・私大一般・共テ利用・合格後）ごとに、いつ・何をするかを順番に。"""
     out = []
@@ -640,7 +667,8 @@ def render_page(cfg, day, updated):
             ("changes", "今年の変更点（これだけは知っておく）", render_changes(cfg)),
             ("news", "受験ニュース", f'<div class="nts">{render_news(cfg, day)}</div>'),
         ]),
-        ("prep", "✏️ 出願・準備", "出願の流れ・時間割・やることリスト", [
+        ("prep", "✏️ 出願・準備", "役割分担・出願の流れ・時間割", [
+            ("roles", "だれが・いつまでに・なにをする（役割分担）", render_roles(cfg, day)),
             ("flow", "出願の流れ（どうやって出願するの？）", render_flow(cfg)),
             ("tt", "共通テストの時間割", f'<div class="tts">{render_timetable(cfg)}</div>'),
             ("check", "やることリスト", f'<p class="hint">チェックはこの端末のブラウザに保存されます。</p>'
@@ -811,6 +839,24 @@ a.up:hover b{text-decoration:underline}
 .fl .fw{display:block;font:700 12px 'JetBrains Mono','Noto Sans JP',monospace;color:var(--c)}
 .fl b{display:block;font:700 14px/1.5 'Noto Sans JP',sans-serif}
 .fl small{display:block;font-size:12.5px;opacity:.8}
+/* 役割分担 */
+.rlw{overflow-x:auto;border:2px solid #1A1C22}
+.rl{border-collapse:collapse;min-width:1500px;background:#fff;font-size:12.5px}
+.rl th,.rl td{border:1px solid #CFC9BD;vertical-align:top;padding:7px 8px;width:170px}
+.rl tr:first-child th{background:#1A1C22;color:#FBF8F1;text-align:left;border-color:#444}
+.rl tr:first-child th b{display:block;font:900 13px 'Noto Sans JP',sans-serif}
+.rl tr:first-child th small{font:500 11px 'JetBrains Mono',monospace;opacity:.8}
+.rl tr:first-child th i{display:inline-block;font:900 10px 'Noto Sans JP',sans-serif;font-style:normal;background:#C8102E;padding:0 5px;margin-bottom:2px}
+.rl tr:first-child th.cur{background:#C8102E}
+.rl th.who{position:sticky;left:0;z-index:1;width:110px;background:var(--c,#1A1C22);color:#fff;text-align:left}
+.rl th.who span{font-size:20px}
+.rl th.who b{display:block;font:900 15px 'Noto Sans JP',sans-serif}
+.rl th.who small{font-size:11px;opacity:.85;line-height:1.4;display:block}
+.rl td ul{margin:0;padding-left:1.05em;line-height:1.55}
+.rl td li{margin-bottom:4px}
+.rl td.cur{background:color-mix(in srgb,var(--c) 9%,#fff);box-shadow:inset 0 0 0 2px #C8102E}
+.rl td.done{opacity:.4}
+.rl tr:first-child th.done{opacity:.55}
 /* 月カレンダー */
 .ctabs{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:12px}
 .ctabs button{font:700 13px 'Noto Sans JP',sans-serif;border:2px solid #1A1C22;background:#FBF8F1;padding:4px 12px;cursor:pointer;color:#1A1C22}
