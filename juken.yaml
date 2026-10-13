@@ -426,6 +426,20 @@ recommend:
       - {name: 岩手大 農学部 動物科学・森林科学・水産システム, schedule: 前期, border: "共テ54〜64%・偏差値45.0〜50.0", level: 実力相応, note: "動物科学は64%でチャレンジ寄り、森林・水産は安全寄り。二次は生物1科目でOK", url: "https://search.keinet.ne.jp/1045/general/border_rate"}
       - {name: 山形大 農学部 食料生命環境学科, schedule: 前期, border: "共テ50%・偏差値42.5", level: 安全寄り, note: "一括募集。二次は生物1科目でOK。鶴岡キャンパスは自然ゆたか", url: "https://search.keinet.ne.jp/1065/general/border_rate"}
       - {name: 信州大 農学部 山岳圏森林・環境共生, schedule: 前期, border: "共テ67%・偏差値50.0", level: チャレンジ, note: "山と森のフィールド。二次は理科2科目で数学なしOK", url: "https://search.keinet.ne.jp/1225/general/border_rate"}
+  - field: ★ 美幸向け：読む・書く（国語・英語）× 自然・地域
+    color: "#7A3E9D"
+    why: 小さいころから国語が得意で小説好き、英語も得意。理系の共テ登録のままで出せて、共テで国語・英語の比重が高い所、二次が小論文・面接・英語・国語の所。読む・書く力を生かす仕事（科学編集・ライター、学芸員、司書、環境コンサル、公務員）にもつながる。
+    kyotsu: 理系型のままでOK（英・国の比重が高い所を選ぶ）。科目の組み合わせは要項で必ず確認
+    niji: 小論文・面接・英語・国語。11月から小論文の練習を始めたい
+    examples:
+      - {name: 高知大 地域協働学部, schedule: 前期, border: "共テ57〜58%（二次偏差値なし）", level: 実力相応, note: "共テは英200＋国200で500点中400点。二次は小論文・面接。地域でのフィールドワークが多い", url: "https://search.keinet.ne.jp/1395/general/border_rate"}
+      - {name: 宇都宮大 地域デザイン科学部 コミュニティデザイン学科（理型）, schedule: 前期, border: "共テ61%", level: 実力相応, note: "二次は小論文400だけ。東京から近い", url: "https://search.keinet.ne.jp/1090/general/border_rate"}
+      - {name: 新潟大 創生学部（理系）, schedule: 前期, border: "共テ62%・偏差値47.5", level: 実力相応, note: "二次は英・数・国から2つ → 英語＋国語で受けられる。学びを自分で組み立てる学部", url: "https://search.keinet.ne.jp/1180/general/border_rate"}
+      - {name: 滋賀県立大 環境科学部 環境生態学科, schedule: 前期, border: "共テ56%", level: 実力相応, note: "二次は小論文200だけ。琵琶湖・生きもの・自然。共テは理科の配点が重い", url: "https://search.keinet.ne.jp/1587/general/border_rate"}
+      - {name: 茨城大 地域未来共創学環（英語選択）, schedule: 前期, border: "共テ60%・偏差値50.0", level: 実力相応, note: "文理融合。二次は英語＋面接。理系型で出せるかは要項で確認", url: "https://search.keinet.ne.jp/1075/general/border_rate"}
+      - {name: 宇都宮大 農学部 エコロジカル社会経済学科, schedule: 前期, border: "共テ60%・偏差値47.5", level: 実力相応, note: "二次は英語＋（数学か小論文）。自然と社会の両方。科目の組み合わせは要項で確認", url: "https://search.keinet.ne.jp/1090/general/border_rate"}
+      - {name: 長崎大 環境科学部 環境科学B（理系）, schedule: 前期, border: "共テ54%・偏差値45.0", level: 安全寄り, note: "二次は英語＋理科で数学なしOK", url: "https://search.keinet.ne.jp/1435/general/border_rate"}
+      - {name: 信州大 サステナブル社会協創学環（2027新設）, schedule: 前期, border: "共テ70%・偏差値50.0", level: チャレンジ, note: "二次に国語がある珍しい型（数学も必要）。定員16人で新設なのでブレが大きい", url: "https://search.keinet.ne.jp/1225/general/border_rate"}
   - field: 情報・データサイエンス系
     color: "#1F4E8C"
     why: 求人がとても多く、地方国公立でも新設・定員増が続いている。二次が「英＋数」や「数だけ」の大学が多く、理系の得意を活かしやすい。
@@ -485,7 +499,8 @@ recommend:
       - {name: 兵庫県立大 環境人間学部【学科新設】, schedule: 前期, border: "共テ69%・偏差値52.5", level: チャレンジ, note: "建築地域デザイン学科・グリーンサイエンス学科"}
 
 recommend_tips:
-  - 前期・中期・後期で1校ずつ。前期は本命（実力相応、例：静岡大・信州大・新潟大の工学部）。
+  - 美幸は★の2つ（自然・動物×英国、読む・書く×自然・地域）から前期の本命を選ぶのがおすすめ。前期で国語・英語型を1つ、安全寄りを1つ、後期は面接・小論文型で。
+  - 前期・中期・後期で1校ずつ。前期は本命（実力相応）。
   - 中期は公立の共テ高得点型（諏訪東京理科・兵庫県立 理）か、チャレンジ（大阪公立 工）。
   - 後期は前期よりボーダーが +7〜10% 高いので、共テのみ・面接のみの学科（新潟大 工、群馬大 理工、富山県立大）で拾う。
   - 1/18 の自己採点で最終決定。ボーダーとの差が −3% 以内なら出願可、+5% 以上なら一段上げる。
