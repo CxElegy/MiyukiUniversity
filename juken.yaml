@@ -32,7 +32,7 @@ settings:
   page_url: https://cxelegy.github.io/MiyukiUniversity/
   exclude: ["高校入試|高校受験|公立高校|中学受験|中学入試|小学校受験|国家試験|社会保険労務士|資格試験|韓国|中国の大学|塾.{0,4}選"]
   compare_note: 試験日は大学提供の2027年度情報（Kei-Net）。正式な募集要項は11月上旬に出るので、そこで最終確認。ボーダーは河合塾 Kei-Net の2027年度予想。延納は去年の手続要項をもとにした目安。
-  recommend_note: 理系 × 地方国公立の候補。ボーダーは河合塾 Kei-Net の「2027年度入試」予想（共テ得点率・二次偏差値、合格可能性50%）。日東駒専〜GMARCH 理工レベルなら共テ55〜65%が実力相応の目安。日程・科目は各大学の募集要項（10〜12月公表）で必ず確認。
+  recommend_note: 理系 × 地方国公立の候補。いちばん上（★）が美幸の性格・得意科目に合わせたおすすめ。獣医学科は別格（共テ77〜79%）なので注意。ボーダーは河合塾 Kei-Net の「2027年度入試」予想（共テ得点率・二次偏差値、合格可能性50%）。日東駒専〜GMARCH 理工レベルなら共テ55〜65%が実力相応の目安。日程・科目は各大学の募集要項（10〜12月公表）で必ず確認。
 
 weekly:
   week: 2026-10-12
@@ -410,6 +410,22 @@ links:
   - {name: リセマム 大学受験, url: "https://resemom.jp/", note: 受験ニュース}
 
 recommend:
+  - field: ★ 美幸向け：自然・動物・農学 × 英語・国語で勝負
+    color: "#2E7D4F"
+    why: 自然や動物が好き・黙々と集中できる・英語と国語が得意、に合わせて選んだ。二次で数学を避けられる（英語や生物で受けられる）所、入学後に分野を選べる「一括募集」の所を優先。
+    kyotsu: 6教科8科目（数学も必要。6割はほしい）。国語・英語の配点が高い大学ほど有利
+    niji: 英語だけ／英語＋生物／生物1科目 など、数学なしで受けられる所
+    examples:
+      - {name: 帯広畜産大 畜産学部 畜産科学課程, schedule: 前期, border: "共テ55%・偏差値45.0", level: 実力相応, note: "動物のど真ん中。二次の総合問題は英語＋（化・生）で数学を避けられる。分野は入学後に選ぶ", url: "https://search.keinet.ne.jp/1015/general/border_rate"}
+      - {name: 茨城大 農学部 食生命科学科, schedule: 前期, border: "共テ57%・偏差値47.5", level: 実力相応, note: "二次は英語200＋書類だけ。いちばん「英語勝負」。東京から近い", url: "https://search.keinet.ne.jp/1075/general/border_rate"}
+      - {name: 新潟大 農学部 農学科, schedule: 前期, border: "共テ60%・偏差値47.5", level: 実力相応, note: "二次は英語＋化学・生物（数学なしOK）。一括募集で動物・森林・環境を後から選べる", url: "https://search.keinet.ne.jp/1180/general/border_rate"}
+      - {name: 宇都宮大 農学部, schedule: 前期, border: "共テ58〜60%・偏差値47.5", level: 実力相応, note: "二次に英語あり。東京から近い（学科名は2027年度に変わる可能性、要確認）", url: "https://search.keinet.ne.jp/1090/general/border_rate"}
+      - {name: 弘前大 農学生命科学部, schedule: 前期, border: "共テ53〜59%・偏差値40.0〜42.5", level: 安全寄り, note: "共テで国語200点と比重が高い。二次は理科（生物）1科目だけ", url: "https://search.keinet.ne.jp/1040/general/border_rate"}
+      - {name: 鳥取大 農学部 生命環境農学科, schedule: 前期, border: "共テ54%・偏差値47.5", level: 安全寄り, note: "二次は英語1科目で受けられる。一括募集", url: "https://search.keinet.ne.jp/1340/general/border_rate"}
+      - {name: 鹿児島大 農学部・水産学部, schedule: 前期, border: "共テ55%・偏差値45.0〜47.5", level: 安全寄り, note: "共テで英語300点と重い。二次は英語＋生物でOK。南の海と動物", url: "https://search.keinet.ne.jp/1465/general/border_rate"}
+      - {name: 岩手大 農学部 動物科学・森林科学・水産システム, schedule: 前期, border: "共テ54〜64%・偏差値45.0〜50.0", level: 実力相応, note: "動物科学は64%でチャレンジ寄り、森林・水産は安全寄り。二次は生物1科目でOK", url: "https://search.keinet.ne.jp/1045/general/border_rate"}
+      - {name: 山形大 農学部 食料生命環境学科, schedule: 前期, border: "共テ50%・偏差値42.5", level: 安全寄り, note: "一括募集。二次は生物1科目でOK。鶴岡キャンパスは自然ゆたか", url: "https://search.keinet.ne.jp/1065/general/border_rate"}
+      - {name: 信州大 農学部 山岳圏森林・環境共生, schedule: 前期, border: "共テ67%・偏差値50.0", level: チャレンジ, note: "山と森のフィールド。二次は理科2科目で数学なしOK", url: "https://search.keinet.ne.jp/1225/general/border_rate"}
   - field: 情報・データサイエンス系
     color: "#1F4E8C"
     why: 求人がとても多く、地方国公立でも新設・定員増が続いている。二次が「英＋数」や「数だけ」の大学が多く、理系の得意を活かしやすい。
