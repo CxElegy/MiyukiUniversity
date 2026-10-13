@@ -102,11 +102,15 @@ def _event(ev, eid, kind):
 
 
 def plan(cfg):
-    """逆算プラン：本番から逆算した期間ごとの「やること」。{start, end, title, goal, todo, color} を日付順に。"""
+    """逆算プラン：本番から逆算した期間ごとの「やること」と「決めること」。{start, end, title, goal, todo, decide, color} を日付順に。"""
     out = []
     for x in cfg.get("plan") or []:
+        decide = [{"by": _date(d["by"]) if d.get("by") else None, "q": d["q"], "look": d.get("look") or [],
+                   "rule": d.get("rule", ""), "url": d.get("source", "")} for d in x.get("decide") or []]
+        decide.sort(key=lambda d: d["by"] or dt.date.max)
         out.append({"start": _date(x["from"]), "end": _date(x["to"]), "title": x["title"],
-                    "goal": x.get("goal", ""), "todo": x.get("todo") or [], "color": x.get("color", "#1A1C22")})
+                    "goal": x.get("goal", ""), "todo": x.get("todo") or [], "decide": decide,
+                    "color": x.get("color", "#1A1C22")})
     return sorted(out, key=lambda x: x["start"])
 
 
@@ -386,7 +390,26 @@ def render_now(phases, day):
                    for x in cur["todo"])
     return (f'<div class="nowbox" style="--c:{cur["color"]}"><div class="nh">'
             f'<b>{e(cur["title"])}</b><span>{fmt_day(cur["start"])}〜{fmt_day(cur["end"])}・この期間あと{left + 1}日</span></div>'
-            f'<div class="nb">{"<p>🎯 " + e(cur["goal"]) + "</p>" if cur["goal"] else ""}<ul class="ckl">{todo}</ul></div></div>')
+            f'<div class="nb">{"<p>🎯 " + e(cur["goal"]) + "</p>" if cur["goal"] else ""}<ul class="ckl">{todo}</ul>'
+            f'{render_decide(cur["decide"], day)}</div></div>')
+
+
+def render_decide(items, day):
+    """逆算プランの「決めること」：いつまでに・なにを決めるか、そのとき見るもの（判断材料）と目安。"""
+    out = []
+    for d in items:
+        when = ""
+        if d["by"]:
+            left = (d["by"] - day).days
+            tag = "過ぎた" if left < 0 else "今日まで" if left == 0 else f"あと{left}日"
+            when = f'<b>〜{fmt_day(d["by"])}</b><i>{tag}</i>'
+        look = "".join(f"<li>{e(x)}</li>" for x in d["look"])
+        src = f' <a href="{e(d["url"])}" target="_blank" rel="noopener">出典</a>' if d["url"] else ""
+        past = " past" if d["by"] and d["by"] < day else ""
+        out.append(f'<div class="dq{past}"><div class="dw">{when}<span>{e(d["q"])}</span></div>'
+                   f'{"<small>見るもの</small><ul>" + look + "</ul>" if look else ""}'
+                   f'{"<p>👉 目安：" + e(d["rule"]) + src + "</p>" if d["rule"] else ""}</div>')
+    return f'<div class="dc"><h4>🧭 決めること</h4>{"".join(out)}</div>' if out else ""
 
 
 def render_plan(phases, day):
@@ -398,10 +421,11 @@ def render_plan(phases, day):
         todo = "".join(f"<li>{e(x)}</li>" for x in ph["todo"])
         if state == "cur":  # 今の期間のやることはページ上部の「いまやること」と同じなので繰り返さない
             todo = '<li class="see"><a href="#now">↑ ページ上部の「いまやること」でチェック</a></li>'
+        decide = "" if state == "cur" else render_decide(ph["decide"], day)
         card = (f'<div class="pl {state}" style="--c:{ph["color"]}"><div class="pd">'
                 f'<b>{fmt_day(ph["start"])}</b><span>〜{fmt_day(ph["end"])}</span><i>{badge}</i></div>'
                 f'<div class="pc"><h3>{e(ph["title"])}</h3>{"<p>🎯 " + e(ph["goal"]) + "</p>" if ph["goal"] else ""}'
-                f'<ul>{todo}</ul></div></div>')
+                f'<ul>{todo}</ul>{decide}</div></div>')
         (done if state == "done" else shown if len(shown) < 2 else later).append(card)
     if not (done or shown or later):
         return ""
@@ -805,6 +829,16 @@ a.up:hover b{text-decoration:underline}
 .pc p{margin:4px 0;font:700 13.5px/1.6 'Noto Sans JP',sans-serif}
 .pc ul{margin:4px 0 0;padding-left:1.2em;font-size:13.5px;line-height:1.7}
 .pc li.see{list-style:none;margin-left:-1.2em;font-weight:700}
+.dc{margin-top:10px;border-top:2px dashed #1A1C22;padding-top:8px}
+.dc h4{margin:0 0 6px;font:900 14px 'Noto Sans JP',sans-serif;letter-spacing:.05em}
+.dq{background:#FBF8F1;border-left:4px solid var(--c);padding:6px 10px;margin:0 0 8px}
+.dq.past{opacity:.5}
+.dw{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 8px;font:900 14.5px/1.5 'Noto Sans JP',sans-serif}
+.dw b{font:700 13px 'JetBrains Mono','Noto Sans JP',monospace;color:var(--c)}
+.dw i{font:900 11px 'Noto Sans JP',sans-serif;font-style:normal;background:var(--c);color:#fff;padding:0 6px}
+.dq small{display:block;margin-top:4px;font:700 11.5px 'Noto Sans JP',sans-serif;opacity:.7}
+.dq ul,.pc .dq ul{margin:2px 0 0;padding-left:1.2em;font-size:13.5px;line-height:1.6}
+.dq p,.pc .dq p{margin:4px 0 0;font:700 13.5px/1.6 'Noto Sans JP',sans-serif}
 .bar.ph{top:5px;height:20px;background:color-mix(in srgb,var(--c) 30%,#fff);border-width:2px}
 .nowph .bar.ph{background:var(--c)}
 .nowph .gl{background:#FFF4F4}

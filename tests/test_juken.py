@@ -115,6 +115,21 @@ class JukenTest(unittest.TestCase):
         # どの期間にも入らない日は「いまやること」を出さない
         self.assertNotIn('class="nowbox"', juken.render_page(cfg(), dt.date(2027, 1, 5), ""))
 
+    def test_plan_decisions(self):
+        c = cfg()
+        c["plan"][0]["decide"] = [{"by": "2026-12-18", "q": "一次手続をする？", "look": ["払うお金の額"],
+                                   "rule": "予算の中なら手続", "source": "https://example.com"}]
+        c["plan"][1]["decide"] = [{"by": "2026-11-04", "q": "基礎テに出す？"}]
+        page = juken.render_page(c, dt.date(2026, 12, 9), "")
+        now = page.split('id="now"')[1].split("</section>")[0]
+        self.assertIn("🧭 決めること", now)                     # 今の期間の「決めること」は上部に出す
+        self.assertIn("〜12/18（金）", now)                     # 曜日は計算
+        self.assertIn("あと9日", now)
+        self.assertIn("払うお金の額", now)
+        self.assertIn("目安：予算の中なら手続", now)
+        self.assertIn('class="dq past"', page)                  # 期限が過ぎたものは薄く
+        self.assertEqual(page.count("一次手続をする？"), 1)     # 今の期間のカードでは繰り返さない
+
     def test_weekly_summary(self):
         c = cfg()
         c["weekly"] = {"week": "2027-01-11", "learned": [{"text": "平均点の発表", "source": "https://example.com"}],
