@@ -32,7 +32,7 @@ settings:
   keep_days: 120
   page_url: https://cxelegy.github.io/MiyukiUniversity/
   exclude: ["高校入試|高校受験|公立高校|中学受験|中学入試|小学校受験|国家試験|社会保険労務士|資格試験|韓国|中国の大学|塾.{0,4}選"]
-  compare_note: 試験日は大学提供の2027年度情報（Kei-Net）。正式な募集要項は11月上旬に出るので、そこで最終確認。ボーダーは河合塾 Kei-Net の2027年度予想。延納は去年の手続要項をもとにした目安。
+  compare_note: 試験日は大学提供の2027年度情報（Kei-Net）。正式な募集要項は11月上旬に出るので、そこで最終確認。ボーダーは河合塾 Kei-Net の2027年度予想。延納は去年の手続要項をもとにした目安。共テ利用の「中国語OK/✕」は大学の要項・Kei-Net で確認（立教・法政は11月の要項で再確認）。一般選抜はどこも英語。
   recommend_note: 理系 × 地方国公立の候補。いちばん上（★）が美幸の性格・得意科目に合わせたおすすめ。獣医学科は別格（共テ77〜79%）なので注意。ボーダーは河合塾 Kei-Net の「2027年度入試」予想（共テ得点率・二次偏差値、合格可能性50%）。日東駒専〜GMARCH 理工レベルなら共テ55〜65%が実力相応の目安。日程・科目は各大学の募集要項（10〜12月公表）で必ず確認。
 
 weekly:
@@ -200,7 +200,7 @@ schedule:
     kind: 私立
     remind: true
     tentative: true
-    note: 多くの私大で共テ前に締切。大学ごとに要確認
+    note: 多くの私大で共テ前に締切。中国語が使えるか、大学・方式ごとに要確認
   - date: 2027-02-01
     end: 2027-02-20
     title: 私立大学 一般選抜（2月上旬〜中旬がピーク）
@@ -211,8 +211,8 @@ schedule:
 
   # ---- MARCH（押さえ候補）出典：Kei-Net 大学提供の2027年度情報 ----
   - date: 2027-01-15
-    title: MARCH 共テ利用の出願締切（明治・青学・立教・中央・法政）
-    short: MARCH共テ利用〆
+    title: 共テ利用の出願締切（中国語で出せるのは立教 理・法政 理工C方式）
+    short: 立教・法政C 共テ利用〆
     kind: 私立
     remind: true
     source: https://search.keinet.ne.jp/2286/topics/12
@@ -298,25 +298,23 @@ targets:
     short: 東洋
     faculty: 理工・総合情報・生命科学・食環境科学・情報連携 ほか
     type: 私立（押さえ）
-    method: 総合型 基礎学力テスト型（併願可）／共テ利用／一般選抜
+    method: 総合型 基礎学力テスト型（併願可・英語＋国語or数学）／一般選抜（英語）。共テ利用は中国語では出せない
     url: https://www.toyo.ac.jp/nyushi/
     keywords: ["東洋大学 入試"]
     match: [東洋大]
     exclude: ["高校|高等学校|中学|附属|付属"]   # 系列校の記事は出さない（本人が特定されないように）
-    note: 国公立の前期発表（3/6〜）より前に入学手続締切（2/26）が来るので、入学金を払うかどうか先に家族で決めておく。2027年4月に環境イノベーション学部（川越）新設予定。
+    note: 共テ利用は英語（生命科学・食環境科学は英・独・仏）だけで、中国語の欄がない（2027年度要項）→ 押さえは基礎学力テスト型か一般選抜（どちらも英語）。国公立の前期発表（3/6〜）より前に入学手続締切（2/26）が来るので、入学金を払うかどうか先に家族で決めておく。2027年4月に環境イノベーション学部（川越）新設予定。
     dates:
       - {date: 2026-10-29, end: 2026-11-04, title: 基礎学力テスト型 出願, short: 東洋 基礎テ出願, remind: true}
       - {date: 2026-11-29, title: 基礎学力テスト型 試験（英語＋国語or数学）, short: 東洋 基礎テ試験, remind: true}
       - {date: 2026-12-14, title: 基礎学力テスト型 合格発表, short: 東洋 基礎テ発表}
       - {date: 2026-12-18, title: 基礎学力テスト型 一次手続締切, short: 東洋 一次手続}
-      - {date: 2027-01-04, end: 2027-01-15, title: 共テ利用（前期）出願, short: 東洋 共テ利用出願, remind: true}
       - {date: 2027-01-04, end: 2027-01-28, title: 一般選抜 前期 出願, short: 東洋 一般前期出願, remind: true}
       - {date: 2027-02-08, end: 2027-02-11, title: 一般選抜 前期 試験（学科・方式で受験日が違う）, short: 東洋 一般前期}
-      - {date: 2027-02-16, title: 共テ利用（前期）合格発表, short: 東洋 共テ利用発表, tentative: true}
       - {date: 2027-02-20, title: 一般選抜 前期 合格発表, short: 東洋 一般前期発表}
-      - {date: 2027-02-26, title: 入学手続締切（一般前期・共テ利用前期・基礎テ二次）, short: 東洋 手続締切, remind: true}
+      - {date: 2027-02-26, title: 入学手続締切（一般前期・基礎テ二次）, short: 東洋 手続締切, remind: true}
       - {date: 2027-03-05, title: 一般選抜 後期 試験, short: 東洋 一般後期}
-      - {date: 2027-03-15, title: 一般後期・共テ利用後期① 合格発表, short: 東洋 後期発表}
+      - {date: 2027-03-15, title: 一般後期 合格発表, short: 東洋 後期発表}
 
 topics:
   - name: 共通テスト
@@ -392,6 +390,12 @@ changes:
   - title: 美幸の共テは「理8型（理系6教科8科目）・外国語は中国語」
     body: 中国語は80分・200点で、リスニングはない（1日目は16:40でおわり）。国公立の多くは中国語でOKだけど、共テの外国語を英語だけにしている大学・学部もある。おすすめ学部は中国語で出せる所に入れかえた。二次の外国語はどこも英語だけ。
     source: https://www.dnc.ac.jp/kyotsu/shiken_jouhou/r9/r9_jukenannai.html
+  - title: 共テ中国語の平均点：172点 → 166点 → 146点（200点満点）
+    body: 2024年 172.08点、2025年 166.02点、2026年 145.88点（受験者は800人台）。年によって難しさがかなり変わるので、過去問は何年分か解いて「低い年」でも取れるようにしておく。
+    source: https://www.dnc.ac.jp/albums/abm.php?d=2153&f=abm00017610.pdf
+  - title: 私大の共テ利用は「英語指定」が多い
+    body: 明治 理工（英・独・仏）・青学 理工・中央 理工・法政 B方式・東洋 は共テの外国語に中国語を使えない。使えるのは立教 理と法政 理工C方式（6教科）。私大の一般選抜の試験はどこも英語。
+    source: https://www.toyo.ac.jp/nyushi/content/dam/toyowebstyle/admission/admission-data/requirements-general/general_entry-exam_2027.pdf
   - title: 共通テストの出願はWebのみ（2年目）
     body: 高3も一人ひとりが自分のマイページで出願。受験票も12/4からマイページで取得して A4 で印刷（去年より6日早い）。スマホ画面は不可、顔写真付きの身分証も必要。
     source: https://www.dnc.ac.jp/kyotsu/shiken_jouhou/r9/r9_jukenannai.html
@@ -459,53 +463,47 @@ recommend:
       - {name: 鹿児島大 農学部, note: "共テは英語のみ（水産学部は中国語OK）", url: "https://www.kagoshima-u.ac.jp/exam/R09-senbatu.pdf"}
       - {name: 信州大 農学部・サステナブル社会協創学環, note: "共テは英語のみ（2027年度 選抜要項）", url: "https://www.shinshu-u.ac.jp/ad_portal/selection/uploads/R09senbatsuyoukou.pdf"}
       - {name: 滋賀県立大 環境科学部 環境生態学科, note: "共テは英語のみ（2027年度の予告）", url: "https://www.usp.ac.jp/news2/items/15c008bb79072d60a94ff02db3141f08_6.pdf"}
+      - {name: 長崎大 情報データ科学部, note: "共テは英語のみ（2027年度 選抜大綱）", url: "https://www.nagasaki-u.ac.jp/nyugaku/admission/selection/file/R09/R09taiko.pdf"}
+      - {name: 富山県立大 情報工学部, note: "共テは英語のみ（2027年度 選抜要項）", url: "https://www.pu-toyama.ac.jp/tpu/wp-content/uploads/2026/07/R9senbatsu.pdf"}
+      - {name: 静岡大 工学部, note: "共テは英語のみ（2027年度）", url: "https://www.shizuoka.ac.jp/nyushi/outline/course/document/kamoku09i_1.pdf"}
+      - {name: 信州大 工学部, note: "共テは英語のみ（2027年度 選抜要項）", url: "https://www.shinshu-u.ac.jp/ad_portal/selection/uploads/R09senbatsuyoukou.pdf"}
+      - {name: 茨城大 工学部, note: "共テは英語のみ（2027年度 選抜要項）", url: "https://www.ibaraki.ac.jp/admission/uploads/2026/07/R9senbatuyoko.pdf"}
+      - {name: 群馬大 理工学部, note: "共テは英語のみ（2027年度 一般選抜要項）", url: "https://www.gunma-u.ac.jp/wp-content/uploads/2026/09/2027ippan.pdf"}
+      - {name: 山陽小野田市立山口東京理科大 数理情報科学科・医薬工学科, note: "共テは英語のみ（Kei-Net）", url: "https://search.keinet.ne.jp/1661/general/exam_subject"}
   - field: 情報・データサイエンス系
     color: "#1F4E8C"
     why: 求人がとても多く、地方国公立でも新設・定員増が続いている。二次が「英＋数」や「数だけ」の大学が多く、理系の得意を活かしやすい。
     kyotsu: 英・数ⅠA・数ⅡBC・国・理・地歴公民・情報Ⅰ（6教科8科目が基本）
     niji: 英＋数、または数のみ
     examples:
-      - {name: 広島大 情報科学部, schedule: 前期, border: "共テ67%・偏差値55.0（A型）", level: チャレンジ, note: "二次 英400・数800。情報系の国立として評価が高い", url: "https://search.keinet.ne.jp/1360/general/border_rate"}
-      - {name: 滋賀大 データサイエンス学部, schedule: 前期, border: "共テ65%・偏差値52.5", level: チャレンジ, note: "二次 英300・数300。DS学部の先駆けで企業連携が多い", url: "https://search.keinet.ne.jp/1270/general/border_rate"}
-      - {name: 群馬大 情報学部, schedule: 前期, border: "共テ60%・偏差値50.0", level: 実力相応, note: "二次 英200・数200、または英か数の1科目型を選べる", url: "https://search.keinet.ne.jp/1095/general/border_rate"}
-      - {name: 長崎大 情報データ科学部（理系B）, schedule: 前期, border: "共テ59%・偏差値45.0", level: 実力相応, note: "二次 英200・数400で理科なし。後期は66%", url: "https://search.keinet.ne.jp/1435/general/border_rate"}
-      - {name: 富山県立大 情報工学部, schedule: 前期, border: "共テ50%・偏差値40.0〜42.5", level: 安全寄り, note: "二次 数250・物200。後期は64%で共テのみ", url: "https://search.keinet.ne.jp/1545/general/border_rate"}
+      - {name: 広島大 情報科学部, schedule: 前期, border: "共テ67%・偏差値55.0（A型）", level: チャレンジ, note: "共テ中国語OK。めずらしく二次の外国語も中国語で受けられる（英・独・仏・中から1、400点）。数800", url: "https://www.hiroshima-u.ac.jp/index.php/system/files/297499/09_senbatsu_youkou.pdf"}
+      - {name: 滋賀大 データサイエンス学部, schedule: 前期, border: "共テ65%・偏差値52.5", level: チャレンジ, note: "共テ中国語OK。二次は英300・数300（英語必須）。DS学部の先駆けで企業連携が多い", url: "https://search.keinet.ne.jp/1270/general/border_rate"}
+      - {name: 群馬大 情報学部, schedule: 前期, border: "共テ60%・偏差値50.0", level: 実力相応, note: "共テ中国語OK。二次は数学だけでも受けられる（英・数から1つか2つ）", url: "https://search.keinet.ne.jp/1095/general/border_rate"}
   - field: 工学系（機械・電気・建築・化学）
     color: "#C8102E"
-    why: 就職が安定していて、地元企業への推薦の道も太い。前期は共テ55〜64%で狙える学科が多く、英語なしの二次もある。
+    why: 就職が安定していて、地元企業への推薦の道も太い。ただ工学部は共テの英語を指定する大学が多いので、中国語OKの所だけ残した。
     kyotsu: 6教科8科目（理科は物理・化学が基本）
-    niji: 数＋物（または化）中心。英語なしの大学もある（信州大など）
+    niji: 数＋物（または化）中心。中期の諏訪東京理科は数学だけ
     examples:
-      - {name: 大阪公立大 工学部, schedule: 中期, border: "共テ80%・偏差値62.5", level: チャレンジ, note: "公立トップの工学部。中期を「夢枠」に。二次 英120・数240・理240", url: "https://search.keinet.ne.jp/1615/general/border_rate"}
-      - {name: 静岡大 工学部（機械工）, schedule: 前期, border: "共テ64%・偏差値50.0", level: 実力相応, note: "他学科は60〜63%。東京から近く、浜松の製造業に強い。二次 英200・数400・物400", url: "https://search.keinet.ne.jp/1230/general/border_rate"}
-      - {name: 信州大 工学部（電気電子・情報サイエンス）, schedule: 前期, border: "共テ62〜63%・偏差値45.0", level: 実力相応, note: "電気電子の二次は数280・物280で英語なし", url: "https://search.keinet.ne.jp/1225/general/border_rate"}
-      - {name: 新潟大 工学部 工学科, schedule: 前期・後期, border: "前期 共テ57〜58%・偏差値45.0〜47.5", level: 実力相応, note: "二次 英100・数200・理200。後期は71%で二次は面接のみ", url: "https://search.keinet.ne.jp/1180/general/border_rate"}
-      - {name: 茨城大 工学部 情報工, schedule: 前期・後期, border: "前期 共テ57%・偏差値42.5", level: 実力相応, note: "二次 英・数・物の高得点科目＋書類。後期は66%", url: "https://search.keinet.ne.jp/1075/general/border_rate"}
-      - {name: 公立諏訪東京理科大 工学部 情報応用工, schedule: 中期, border: "共テ65%・偏差値50.0", level: 実力相応, note: "二次は数学600のみ。中期の押さえに", url: "https://search.keinet.ne.jp/1567/general/border_rate"}
-      - {name: 群馬大 理工学部, schedule: 前期, border: "共テ54%・偏差値42.5〜45.0", level: 安全寄り, note: "二次 英100・数200・理200。後期は63〜65%で面接のみ", url: "https://search.keinet.ne.jp/1095/general/border_rate"}
-      - {name: 山陽小野田市立山口東京理科大 工学部（数理情報科学）, schedule: 前期・中期, border: "前期 共テ49%・偏差値42.5〜45.0", level: 安全寄り, note: "前期の二次は数学のみ。中期は74%で共テのみ", url: "https://search.keinet.ne.jp/1661/general/border_rate"}
+      - {name: 大阪公立大 工学部, schedule: 中期, border: "共テ80%・偏差値62.5", level: チャレンジ, note: "共テ中国語OK（Kei-Net）。公立トップの工学部。中期を「夢枠」に。二次 英120・数240・理240", url: "https://search.keinet.ne.jp/1615/general/border_rate"}
+      - {name: 新潟大 工学部 工学科, schedule: 前期・後期, border: "前期 共テ57〜58%・偏差値45.0〜47.5", level: 実力相応, note: "共テ中国語OK。前期の二次は英語必須（英100・数200・理200）。後期は71%で二次は面接だけ", url: "https://search.keinet.ne.jp/1180/general/border_rate"}
+      - {name: 公立諏訪東京理科大 工学部 情報応用工, schedule: 中期, border: "共テ65%・偏差値50.0", level: 実力相応, note: "共テ中国語OK。二次は数学600だけ。中期の押さえに", url: "https://search.keinet.ne.jp/1567/general/border_rate"}
+      - {name: 山陽小野田市立山口東京理科大 工学部（機械工・電気電子工・先進化学）, schedule: 前期・中期, level: 安全寄り, note: "この3学科は共テ中国語OK（Kei-Net）。数理情報科学・医薬工は英語のみなので注意。ボーダーは学科ごとに確認", url: "https://search.keinet.ne.jp/1661/general/exam_subject"}
   - field: 理学系
     color: "#7A3E9D"
     why: 大学院へ進んで研究職・メーカーへ進む道がある。じっくり理科・数学を学びたい人向け。
     kyotsu: 6教科8科目
     niji: 英・数・理の3教科型が多い
     examples:
-      - {name: 兵庫県立大 理学部（物質科学・生命科学）, schedule: 中期, border: "共テ66〜69%・偏差値52.5", level: 実力相応, note: "実力相応とチャレンジの間。二次 英200・数200・理200", url: "https://search.keinet.ne.jp/1627/general/border_rate"}
-  - field: 農学・生命科学系
-    color: "#2E7D4F"
-    why: 食品・バイオ・公務員に強い。二次が軽い大学がある。
-    kyotsu: 6教科8科目（理科は化学・生物が多い）
-    niji: 英のみ／英＋理など、軽めの大学あり
-    examples:
-      - {name: 茨城大 農学部 食生命科学, schedule: 前期, border: "共テ57%・偏差値47.5", level: 実力相応, note: "二次は英語200＋書類50だけ", url: "https://search.keinet.ne.jp/1075/general/border_rate"}
+      - {name: 兵庫県立大 理学部（物質科学・生命科学）, schedule: 中期, border: "共テ66〜69%・偏差値52.5", level: 実力相応, note: "共テ中国語OK。実力相応とチャレンジの間。二次 英200・数200・理200", url: "https://search.keinet.ne.jp/1627/general/border_rate"}
   - field: 医療系（看護・保健／薬）
     color: "#D6336C"
     why: 国家資格が取れて就職に強い。薬学は高め。
     kyotsu: 6教科8科目（看護は5教科型も）
     niji: 英・数・理、看護は面接・小論文も
     examples:
-      - {name: 新潟大 医学部 保健学科（看護）, schedule: 前期, border: "共テ58%・偏差値47.5", level: 実力相応, url: "https://search.keinet.ne.jp/1180/general/border_rate"}
-      - {name: 長崎大 薬学部 薬科学, schedule: 前期, border: "共テ66%・偏差値52.5", level: チャレンジ, url: "https://search.keinet.ne.jp/1435/general/border_rate"}
+      - {name: 新潟大 医学部 保健学科（看護）, schedule: 前期, border: "共テ58%・偏差値47.5", level: 実力相応, note: "共テ中国語OK。前期の二次は英語必須", url: "https://search.keinet.ne.jp/1180/general/border_rate"}
+      - {name: 長崎大 薬学部 薬科学, schedule: 前期, border: "共テ66%・偏差値52.5", level: チャレンジ, note: "共テ中国語OK。二次は英語あり", url: "https://search.keinet.ne.jp/1435/general/border_rate"}
   - field: 環境・地域・新設学部
     color: "#D9822B"
     why: 環境コンサル・自治体・インフラ方面。2027年度は新設が多く、初年度は倍率が読みにくい（チャンスにもなる）。
@@ -523,10 +521,10 @@ recommend_tips:
   - 二次の外国語はどこも英語だけ。英語を続けない場合は、二次が「理科1科目」「数学1科目」「小論文・面接」の大学でそろえる（岩手 農・山形 農・宇都宮 地域デザイン・高知 地域協働 など）。
   - 前期・中期・後期で1校ずつ。前期は本命（実力相応）。
   - 中期は公立の共テ高得点型（諏訪東京理科・兵庫県立 理）か、チャレンジ（大阪公立 工）。
-  - 後期は前期よりボーダーが +7〜10% 高いので、共テのみ・面接のみの学科（新潟大 工、群馬大 理工、富山県立大）で拾う。
+  - 後期は前期よりボーダーが +7〜10% 高いので、面接・小論文だけの学科（新潟大 工・農、宇都宮大、高知大、群馬大 情報）で拾う。どこも共テ中国語OK。
   - 1/18 の自己採点で最終決定。ボーダーとの差が −3% 以内なら出願可、+5% 以上なら一段上げる。
-  - 二次の型を「英＋数」「数＋物」「数のみ」のどれかに寄せると、対策が分散しない。
-  - 私大は国公立前期の発表（3/6〜）より先に入学手続締切が来る。東洋大（基礎学力テスト型・共テ利用）などで押さえを確保。学校からの推薦は専願が多いので、国公立を受けるなら使えるか先生に確認。
+  - 二次の型を「理科1科目」「数のみ」「小論文・面接」「英＋α」のどれかに寄せると、対策が分散しない。
+  - 私大は国公立前期の発表（3/6〜）より先に入学手続締切が来る。東洋大（基礎学力テスト型・一般選抜）などで押さえを確保。ただし私大の一般選抜はどこも英語なので、押さえを受けるなら英語は続ける。共テ利用で中国語が使えるのは立教 理・法政 理工C方式くらい。学校からの推薦は専願が多いので、国公立を受けるなら使えるか先生に確認。
 
 # 逆算プラン：本番から逆算した「この期間にやること」。from〜to が今日を含む期間がページ上部の「いまやること」になる
 plan:
@@ -555,8 +553,8 @@ plan:
         rule: 一次手続でお金がいらない（または払ってもいいと家族で決めた）なら出す。年内に押さえが1つあると、1月が楽になる
       - by: 2026-10-31
         q: 二次で英語を使う？
-        look: [英語の模試の点（10/18 の河合で英語も受けておくと分かる）, 英語がいる候補（帯広畜産・新潟 農・宇都宮 農）に行きたいか, 私大の一般選抜は英語が必要]
-        rule: 英語が今でも得意なら続ける（候補が広がる・私大の一般にも使える）。苦手・時間がないなら英語なしの二次にしぼって、数学・理科に時間を回す
+        look: [英語の模試の点（10/18 の河合で英語も受けておくと分かる）, 英語がいる候補（帯広畜産・新潟 農・宇都宮 農）に行きたいか, 私大の押さえ（東洋 基礎テ・一般選抜、MARCH一般）はどれも英語がいる]
+        rule: 私大の押さえを受けるなら英語は続ける（週2〜3回でキープ）。私大を受けない・国公立一本なら、英語なしの二次にしぼって数学・理科に時間を回してもOK
       - by: 2026-10-31
         q: 前期の候補3つと、二次の型は？
         look: [10/18 模試の科目ごとの得点率（外国語は中国語の過去問の点で計算）, 共テの外国語が中国語でOKか（✕の大学は出せない）, 「おすすめ学部」の二次科目（★の2つ）, 好きな分野（自然・動物・地域）]
@@ -640,7 +638,7 @@ plan:
         rule: ボーダーとの差が −3% 以内なら出願OK、+5% 以上なら一段上げる。二次の比率が高い大学なら −5% でも勝負できる。足切りが心配なら、予告倍率が低い大学に
       - by: 2027-01-24
         q: 私大の一般選抜を減らす？増やす？
-        look: [自己採点の結果, 東洋大の共テ利用で受かりそうか]
+        look: [自己採点の結果, 立教 理・法政 C方式の共テ利用で受かりそうか]
         rule: 共テがよければ私大は減らして二次対策の時間に。悪ければ一般選抜を1〜2回足す
   - from: 2027-01-25
     to: 2027-02-24
@@ -699,7 +697,7 @@ compare:
     faculty: 理工学部
     url: https://search.keinet.ne.jp/2286/topics/12
     exams: ["全学部統一 2/5（金）", "学部別 2/7（日）", "発表 2/15（月）"]
-    kyotesu: 締切 1/15・発表 2/15（3〜4教科）
+    kyotesu: ✕ 中国語では出せない（英・独・仏のみ）
     border: 共テ 79〜82%・偏差値 60.0（機械工）
     deadline: 2/24（水）
     ennou: true
@@ -708,7 +706,7 @@ compare:
     faculty: 理工学部
     url: https://search.keinet.ne.jp/2200/topics/12
     exams: ["全学部 2/7（日）", "個別A 2/10（水）", "個別B 2/11（木）", "発表 2/15・2/17"]
-    kyotesu: 締切 1/15・発表 2/18
+    kyotesu: ✕ 中国語では出せない（英語のみ）
     border: —
     deadline: 全学部 2/22・個別 2/24・共テ 2/25
     ennou: true
@@ -717,7 +715,7 @@ compare:
     faculty: 理学部
     url: https://search.keinet.ne.jp/2290/topics/12
     exams: ["2/6（土）・2/9（火）のうち最大2回", "発表 2/20（土）"]
-    kyotesu: 締切 1/15・発表 2/17（4科目型 or 6科目型）
+    kyotesu: ◯ 中国語OK（4科目型・6科目型）締切 1/15・発表 2/17
     border: 共テ 77〜78%・偏差値 57.5（物理）
     deadline: 3/1（月）
     ennou_note: 確認できず。学費まで払い、3/31までに辞退すれば入学金以外が戻る形の可能性
@@ -725,7 +723,7 @@ compare:
     faculty: 先進理工・基幹理工・社会理工（2026年に再編）
     url: https://search.keinet.ne.jp/2242/topics/12
     exams: ["共テ併用 2/8（月）", "一般方式 2/15（月）", "発表 2/19・2/26"]
-    kyotesu: 締切 1/15・発表 2/13（3教科）
+    kyotesu: ✕ 中国語では出せない（英語のみ）
     border: 共テ 79%・偏差値 57.5（精密機械工）
     deadline: 共テ 2/19・併用 3/1・一般 3/5
     ennou: true
@@ -734,7 +732,7 @@ compare:
     faculty: 理工学部
     url: https://search.keinet.ne.jp/2279/topics/12
     exams: ["T日程 2/5（金）", "A方式Ⅰ 2/11（木）", "A方式Ⅱ 2/14（日）", "発表 2/16〜2/22"]
-    kyotesu: 締切 1/15・発表 2/9（B方式3教科）
+    kyotesu: B方式は✕（英語のみ）。C方式（6教科）は◯ 中国語OK。締切 1/15
     border: 共テ 71〜72%・偏差値 52.5〜55.0（機械工）
     deadline: T 2/19・A-Ⅰ 2/25・A-Ⅱ 2/26・共テ 2/15
     ennou_note: 確認できず（11月の要項で確認）
@@ -755,7 +753,7 @@ flow:
       - {when: "3/12〜", what: 後期（中期は3/8〜）→ 3/20〜24 発表 → 3/27 手続}
   - title: ② 私大の一般選抜（MARCH・東洋）
     color: "#2E7D4F"
-    lead: 大学ごとの試験の点で決まる。出願は共テ前後の1月。大学ごとに締切がバラバラなので一覧にしておく。
+    lead: 大学ごとの試験の点で決まる。外国語はどこも英語（中国語では受けられない）。出願は共テ前後の1月。大学ごとに締切がバラバラなので一覧にしておく。
     steps:
       - {when: "11月〜12月", what: 募集要項を読む・Web出願のアカウントを作る, detail: 正式な要項は11月上旬から公開}
       - {when: "1月上旬〜下旬", what: 大学のサイトでWeb出願, detail: "検定料は1回 約35,000円（同じ大学で複数出すと割引あり）。調査書を郵送（消印有効の大学が多い）"}
@@ -764,11 +762,11 @@ flow:
       - {when: "2月下旬", what: 入学手続（1次）＝入学金を払う, detail: 延納できる大学（明治・青学・中央）は、残りの学費を国公立の発表のあとまで待てる}
   - title: ③ 私大の共テ利用
     color: "#C8102E"
-    lead: 共テの点だけで決まる（大学の試験を受けに行かなくていい）。締切が共テより前なのに注意。
+    lead: 共テの点だけで決まる（大学の試験を受けに行かなくていい）。締切が共テより前なのに注意。美幸（中国語）が出せるのは立教 理・法政 理工C方式くらい。明治・青学・中央・東洋は英語指定で出せない。
     steps:
-      - {when: "1/15まで", what: Web出願（MARCHはどこも1/15締切）, detail: "共テの受験番号を入力。検定料は 約15,000〜18,000円"}
+      - {when: "1/15まで", what: Web出願（立教・法政は1/15締切）, detail: "共テの受験番号を入力。検定料は 約15,000〜18,000円"}
       - {when: "1/16・17", what: 共通テストを受ける（これが試験）}
-      - {when: "2月中旬", what: 合格発表（例：法政 2/9、中央 2/13、明治 2/15）}
+      - {when: "2月中旬", what: 合格発表（例：立教 2/17）}
       - {when: "2月中旬〜下旬", what: 入学手続（1次）, detail: 一般選抜と同じく、延納できるかを確認}
   - title: ④ 合格したら（入学手続）
     color: "#5B6170"
@@ -818,10 +816,10 @@ roles:
     - from: 2026-12-26
       to: 2027-01-15
       label: 直前・私大出願
-      me: ["共テと同じ時間割で毎日演習", "私大のWeb出願を入力（〆1/15 共テ利用）", "会場までの道を下見"]
+      me: ["共テと同じ時間割で毎日演習", "私大のWeb出願を入力（〆1/15 立教・法政C 共テ利用）", "会場までの道を下見"]
       family: ["私大の検定料を払う（共テ利用・一般）", "前期の受験地のホテルを早めに予約"]
       school: ["調査書の追加発行（足りない分）"]
-      univ: ["〆1/15 MARCH 共テ利用", "1月中旬〜下旬 私大一般の出願締切"]
+      univ: ["〆1/15 立教・法政C 共テ利用", "1月中旬〜下旬 私大一般の出願締切"]
     - from: 2027-01-16
       to: 2027-01-24
       label: 共テ → 出願校を決める
