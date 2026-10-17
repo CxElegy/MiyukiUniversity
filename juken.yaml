@@ -33,7 +33,7 @@ settings:
   page_url: https://cxelegy.github.io/MiyukiUniversity/
   exclude: ["高校入試|高校受験|公立高校|中学受験|中学入試|小学校受験|国家試験|社会保険労務士|資格試験|韓国|中国の大学|塾.{0,4}選"]
   compare_note: 試験日は大学提供の2027年度情報（Kei-Net）。正式な募集要項は11月上旬に出るので、そこで最終確認。ボーダーは河合塾 Kei-Net の2027年度予想。延納は去年の手続要項をもとにした目安。共テ利用の「中国語OK/✕」は大学の要項・Kei-Net で確認（立教・法政は11月の要項で再確認）。一般選抜はどこも英語。
-  recommend_note: 理系 × 地方国公立の候補。いちばん上（★）が美幸の性格・得意科目に合わせたおすすめ。獣医学科は別格（共テ77〜79%）なので注意。ボーダーは河合塾 Kei-Net の「2027年度入試」予想（共テ得点率・二次偏差値、合格可能性50%）。日東駒専〜GMARCH 理工レベルなら共テ55〜65%が実力相応の目安。日程・科目は各大学の募集要項（10〜12月公表）で必ず確認。
+  recommend_note: 理系 × 地方国公立の候補。いちばん上は優先校（金沢・琉球）、次の★が美幸の性格・得意科目に合わせたおすすめ。獣医学科は別格（共テ77〜79%）なので注意。ボーダーは河合塾 Kei-Net の「2027年度入試」予想（共テ得点率・二次偏差値、合格可能性50%）。日東駒専〜GMARCH 理工レベルなら共テ55〜65%が実力相応の目安。日程・科目は各大学の募集要項（10〜12月公表）で必ず確認。
 
 weekly:
   week: 2026-10-12
@@ -42,7 +42,6 @@ weekly:
       source: https://resemom.jp/article/2026/10/07/87799.html
     - text: 登録した教科・科目が志望校の条件と合っているか、訂正期間（〜10/16）に見直すよう呼びかけ。理系国公立は基本6教科8科目（情報Ⅰ・理科2科目を含む）。
       source: https://www.dnc.ac.jp/kyotsu/shiken_jouhou/r9/r9_jukenannai.html
-    - text: 総合型選抜の合格発表は11月から。入学しなかった大学に払った入学金は、原則もどらない。
     - text: 美幸の共テは「理系6教科8科目・外国語は中国語」で決定。中国語は筆記200点だけでリスニングなし。前に候補にしていた大学のうち6つは共テが英語指定で出せない（茨城 農・弘前・鹿児島 農・信州 農・信州 サステナブル・滋賀県立 環境）。
       source: https://search.keinet.ne.jp/1075/general/exam_subject
   concerns:
@@ -428,6 +427,28 @@ links:
   - {name: リセマム 大学受験, url: "https://resemom.jp/", note: 受験ニュース}
 
 recommend:
+  - field: ★ 優先：金沢大学（北陸）
+    color: "#B8860B"
+    why: 優先して考える大学。共テは中国語でOK（理系一括だけ英語指定）。前期だけで後期はない。二次はどの学類も英語が必須なので、金沢を受けるなら英語は続ける。上海の大学4つと交換留学ができる。
+    kyotsu: 6教科8科目（理8型）・外国語は中国語でOK（Kei-Net・2027年度選抜要項で確認）
+    niji: 英語（必須）＋数学＋理科1 が基本。融合学域の文系傾斜は英語＋数・国・総合問題から2つ（国語を使える）
+    examples:
+      - {name: 金沢大 理工学域 地球社会基盤学類, schedule: 前期, border: "共テ62%・偏差値50.0", level: 実力相応, note: "共テ中国語OK。二次は英500・数500（数Ⅲあり）・理1 500。環境・防災・地球。🇨🇳 金沢は東華・上海理工・上海財経・上海対外経貿へ交換留学できる（全学類OK）", url: "https://search.keinet.ne.jp/1200/general/border_rate"}
+      - {name: 金沢大 融合学域 観光デザイン学類（理系傾斜）, schedule: 前期, border: "共テ62%・偏差値47.5", level: 実力相応, note: "共テ中国語OK。地域・観光を文理の両方から。二次は英400・数800・理1 500", url: "https://search.keinet.ne.jp/1200/general/border_rate"}
+      - {name: 金沢大 融合学域 先導学類（文系傾斜）, schedule: 前期, border: "共テ64%・偏差値50.0", level: 実力相応, note: "共テ中国語OK。二次は英800＋数・国・総合問題から2つ → 英語＋国語で受けられる", url: "https://search.keinet.ne.jp/1200/general/border_rate"}
+      - {name: 金沢大 医薬保健学域 保健学類 看護学, schedule: 前期, border: "共テ59%・偏差値50.0", level: 実力相応, note: "共テ中国語OK。二次は英600・数400（数Ⅲなし）・理1 500", url: "https://search.keinet.ne.jp/1200/general/border_rate"}
+      - {name: 金沢大 理工学域 生命理工学類, schedule: 前期, border: "共テ67%・偏差値52.5", level: チャレンジ, note: "共テ中国語OK。生きもの・バイオ。二次は英500・数500（数Ⅲあり）・理1 500", url: "https://search.keinet.ne.jp/1200/general/border_rate"}
+  - field: ★ 優先：琉球大学（沖縄）
+    color: "#0E7C86"
+    why: 優先して考える大学。亜熱帯の海・森・生きもの。共テは中国語でOK（数理科学科・医学部だけ英語指定）。農学部・理学部は二次に英語がなく、前期・後期の両方ある。上海の大学との協定はない（中国は中国海洋大学・海南大学・北京語言大学など）。
+    kyotsu: 6教科8科目（理8型）・外国語は中国語でOK（Kei-Net・2027年度選抜要項で確認）
+    niji: 英語なしで受けられる学科が多い（数＋理1、生物1科目、小論文、後期は面接）
+    examples:
+      - {name: 琉球大 理学部 海洋自然科学科 生物系, schedule: 前期・後期, border: "前期 共テ58%・偏差値47.5", level: 実力相応, note: "共テ中国語OK。二次は生物300だけ（英語・数学なし）。後期は小論文。サンゴ礁の海", url: "https://search.keinet.ne.jp/1475/general/border_rate"}
+      - {name: 琉球大 農学部 亜熱帯農林環境科学科, schedule: 前期・後期, border: "前期 共テ57%・偏差値45.0", level: 実力相応, note: "共テ中国語OK。二次は数・理1（英語なし）。後期は面接。森・環境", url: "https://search.keinet.ne.jp/1475/general/border_rate"}
+      - {name: 琉球大 農学部 亜熱帯地域農学科, schedule: 前期・後期, border: "前期 共テ50%・偏差値40.0", level: 安全寄り, note: "共テ中国語OK。二次は数・理1（英語なし）。後期は面接", url: "https://search.keinet.ne.jp/1475/general/border_rate"}
+      - {name: 琉球大 農学部 亜熱帯生物資源科学科, schedule: 前期・後期, border: "前期 共テ49%・偏差値42.5", level: 安全寄り, note: "共テ中国語OK。二次は数・理1（英語なし）。後期は面接", url: "https://search.keinet.ne.jp/1475/general/border_rate"}
+      - {name: 琉球大 国際地域創造学部（論理的思考系）, schedule: 前期・後期, border: "前期 共テ54%", level: 安全寄り, note: "共テ中国語OK。二次は小論文だけ。国語の力を生かせる", url: "https://search.keinet.ne.jp/1475/general/border_rate"}
   - field: ★ 美幸向け：自然・動物・農学（共テは中国語でOK）
     color: "#2E7D4F"
     why: 自然や動物が好き・黙々と集中できる・国語が得意、に合わせて選んだ。ここに並べたのは、共テの外国語を中国語で出せる大学だけ（Kei-Net の2027年度入試科目で確認）。二次は「英語がいる所」と「数学か理科1つで受けられる所」に分けて見る。
@@ -462,6 +483,7 @@ recommend:
       - {name: 弘前大 農学生命科学部, note: "弘前大は全学部で共テの英語が指定（2027年度 選抜要項・暫定版）", url: "https://nyushi.hirosaki-u.ac.jp/wp-content/uploads/2026/04/r9_sbyk_zantei.pdf"}
       - {name: 鹿児島大 農学部, note: "共テは英語のみ（水産学部は中国語OK）", url: "https://www.kagoshima-u.ac.jp/exam/R09-senbatu.pdf"}
       - {name: 信州大 農学部・サステナブル社会協創学環, note: "共テは英語のみ（2027年度 選抜要項）", url: "https://www.shinshu-u.ac.jp/ad_portal/selection/uploads/R09senbatsuyoukou.pdf"}
+      - {name: 金沢大 理系一括 ／ 琉球大 理学部 数理科学科・医学部, note: "共テは英語のみ（Kei-Net・2027年度選抜要項）", url: "https://search.keinet.ne.jp/1200/general/exam_subject"}
       - {name: 滋賀県立大 環境科学部 環境生態学科, note: "共テは英語のみ（2027年度の予告）", url: "https://www.usp.ac.jp/news2/items/15c008bb79072d60a94ff02db3141f08_6.pdf"}
       - {name: 長崎大 情報データ科学部, note: "共テは英語のみ（2027年度 選抜大綱）", url: "https://www.nagasaki-u.ac.jp/nyugaku/admission/selection/file/R09/R09taiko.pdf"}
       - {name: 富山県立大 情報工学部, note: "共テは英語のみ（2027年度 選抜要項）", url: "https://www.pu-toyama.ac.jp/tpu/wp-content/uploads/2026/07/R9senbatsu.pdf"}
@@ -516,6 +538,8 @@ recommend:
       - {name: 兵庫県立大 環境人間学部【学科新設】, schedule: 前期, border: "共テ69%・偏差値52.5", level: チャレンジ, note: "建築地域デザイン学科・グリーンサイエンス学科"}
 
 recommend_tips:
+  - 金沢大・琉球大を優先。金沢は前期だけ・二次に英語、琉球は前期・後期とも英語なしで受けられる学科が多い。たとえば「前期 金沢、後期 琉球」もできる。
+  - 上海に交換留学したいなら：金沢（東華・上海理工・上海財経など4校）、長崎（7校）、茨城（復旦・華東師範）、宇都宮（復旦）、鹿児島・岩手（上海海洋）。琉球は上海の協定校なし。
   - 共テの外国語は中国語。出す大学は必ず「共テ 外国語：英・独・仏・中・韓から1」になっているか要項で確認（✕の大学は出せない）。
   - 美幸は★の2つ（自然・動物、読む・書く×自然・地域）から前期の本命を選ぶのがおすすめ。前期で実力相応を1つ、後期は面接・小論文型で。
   - 二次の外国語はどこも英語だけ。英語を続けない場合は、二次が「理科1科目」「数学1科目」「小論文・面接」の大学でそろえる（岩手 農・山形 農・宇都宮 地域デザイン・高知 地域協働 など）。
