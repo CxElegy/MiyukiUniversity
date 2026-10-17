@@ -434,25 +434,25 @@ recommend:
     kyotsu: 6教科8科目（理8型）。外国語は中国語でOK。数学も必要（6割はほしい）
     niji: 二次の外国語はどの大学も英語だけ（中国語の二次はない）。英語を続けるなら英語型、やめるなら理科・数学1科目型
     examples:
-      - {name: 岩手大 農学部 動物科学・森林科学・水産システム, schedule: 前期, border: "共テ54〜64%・偏差値45.0〜50.0", level: 実力相応, note: "共テ中国語OK。二次は数学か理科の1科目（英語なし）。動物科学は64%でチャレンジ寄り、森林・水産は安全寄り", url: "https://search.keinet.ne.jp/1045/general/exam_subject"}
+      - {name: 岩手大 農学部 動物科学・森林科学・水産システム, schedule: 前期, border: "共テ54〜64%・偏差値45.0〜50.0", level: 実力相応, note: "共テ中国語OK。二次は数学か理科の1科目（英語なし）。動物科学は64%でチャレンジ寄り、森林・水産は安全寄り。🇨🇳 上海海洋大学へ1年の交換留学あり（農学部の枠も）", url: "https://search.keinet.ne.jp/1045/general/exam_subject"}
       - {name: 山形大 農学部 食料生命環境学科, schedule: 前期, border: "共テ50%・偏差値42.5", level: 安全寄り, note: "共テ中国語OK。二次は数・化・生から1科目（英語なし）。一括募集。鶴岡キャンパスは自然ゆたか", url: "https://search.keinet.ne.jp/1065/general/exam_subject"}
       - {name: 鳥取大 農学部 生命環境農学科, schedule: 前期, border: "共テ54%・偏差値47.5", level: 安全寄り, note: "共テ中国語OK。二次は英・数・理から1科目（理科で受ければ英語なし）。一括募集", url: "https://search.keinet.ne.jp/1340/general/exam_subject"}
-      - {name: 鹿児島大 水産学部, schedule: 前期, border: "共テ55%前後（農・水産の目安）", level: 安全寄り, note: "共テ中国語OK（200点を学部の配点に換算）。二次は英・数・理から2科目で英語を外せる。南の海。※農学部のほうは共テが英語指定", url: "https://search.keinet.ne.jp/1465/general/exam_subject"}
+      - {name: 鹿児島大 水産学部, schedule: 前期, border: "共テ55%前後（農・水産の目安）", level: 安全寄り, note: "共テ中国語OK（200点を学部の配点に換算）。二次は英・数・理から2科目で英語を外せる。南の海。※農学部のほうは共テが英語指定。🇨🇳 上海海洋大学へ交換留学（最大3人）＋夏の上海サマースクール（約2週間）", url: "https://search.keinet.ne.jp/1465/general/exam_subject"}
       - {name: 帯広畜産大 畜産学部 畜産科学課程, schedule: 前期, border: "共テ55%・偏差値45.0", level: 実力相応, note: "共テ中国語OK。動物のど真ん中。ただし二次の総合問題は英語を含む3科目なので、英語は続ける必要あり。後期は小論文＋面接", url: "https://search.keinet.ne.jp/1015/general/exam_subject"}
-      - {name: 新潟大 農学部 農学科, schedule: 前期, border: "共テ60%・偏差値47.5", level: 実力相応, note: "共テ中国語OK。二次は英語（必須）＋数・理から2つ。一括募集で動物・森林・環境を後から選べる。後期は面接だけ", url: "https://search.keinet.ne.jp/1180/general/exam_subject"}
-      - {name: 宇都宮大 農学部, schedule: 前期, border: "共テ58〜60%・偏差値47.5", level: 実力相応, note: "共テ中国語OK（200点そのまま）。前期の二次は英語200が必須、後期は面接だけ。東京から近い。2027年度は学科名が変わる", url: "https://search.keinet.ne.jp/1090/general/exam_subject"}
+      - {name: 新潟大 農学部 農学科, schedule: 前期, border: "共テ60%・偏差値47.5", level: 実力相応, note: "共テ中国語OK。二次は英語（必須）＋数・理から2つ。一括募集で動物・森林・環境を後から選べる。後期は面接だけ。🇨🇳 農学部は上海大学経済学院と学生交換協定あり", url: "https://search.keinet.ne.jp/1180/general/exam_subject"}
+      - {name: 宇都宮大 農学部, schedule: 前期, border: "共テ58〜60%・偏差値47.5", level: 実力相応, note: "共テ中国語OK（200点そのまま）。前期の二次は英語200が必須、後期は面接だけ。東京から近い。2027年度は学科名が変わる。🇨🇳 復旦大学へ交換留学できる（全学部OK・HSK6級など）", url: "https://search.keinet.ne.jp/1090/general/exam_subject"}
   - field: ★ 美幸向け：読む・書く（国語）× 自然・地域
     color: "#7A3E9D"
     why: 小さいころから国語が得意で小説好き。共テは中国語・理系型のままで出せて、二次が小論文・面接・国語で受けられる所。読む・書く力を生かす仕事（科学編集・ライター、学芸員、司書、環境コンサル、公務員）にもつながる。
     kyotsu: 理系型（6教科8科目）・外国語は中国語でOK（Kei-Net の2027年度入試科目で確認）
     niji: 小論文・面接・国語が中心。英語なしで受けられる所が多い。11月から小論文の練習を始めたい
     examples:
-      - {name: 宇都宮大 地域デザイン科学部 コミュニティデザイン学科（理型）, schedule: 前期, border: "共テ61%", level: 実力相応, note: "共テ中国語OK（200点そのまま）。二次は小論文400だけ。後期は面接。東京から近い", url: "https://search.keinet.ne.jp/1090/general/exam_subject"}
-      - {name: 高知大 地域協働学部, schedule: 前期, border: "共テ57〜58%（二次偏差値なし）", level: 実力相応, note: "共テ中国語OK。共テは500点満点で外国語200＋国語200が中心。二次は小論文＋面接。地域でのフィールドワークが多い", url: "https://search.keinet.ne.jp/1395/general/exam_subject"}
+      - {name: 宇都宮大 地域デザイン科学部 コミュニティデザイン学科（理型）, schedule: 前期, border: "共テ61%", level: 実力相応, note: "共テ中国語OK（200点そのまま）。二次は小論文400だけ。後期は面接。東京から近い。🇨🇳 復旦大学へ交換留学できる（全学部OK）", url: "https://search.keinet.ne.jp/1090/general/exam_subject"}
+      - {name: 高知大 地域協働学部, schedule: 前期, border: "共テ57〜58%（二次偏差値なし）", level: 実力相応, note: "共テ中国語OK。共テは500点満点で外国語200＋国語200が中心。二次は小論文＋面接。地域でのフィールドワークが多い。🇨🇳 上海海洋大学と学生交流協定あり（2026年度の派遣一覧には載っていない）", url: "https://search.keinet.ne.jp/1395/general/exam_subject"}
       - {name: 新潟大 創生学部（理系）, schedule: 前期, border: "共テ62%・偏差値47.5", level: 実力相応, note: "共テ中国語OK。二次は英・数・国から2つ → 数学＋国語なら英語なし。2027年度は創生学修・DX共創の2つ", url: "https://search.keinet.ne.jp/1180/general/exam_subject"}
-      - {name: 茨城大 地域未来共創学環, schedule: 前期, border: "共テ60%・偏差値50.0", level: 実力相応, note: "共テ中国語OK（200点そのまま）。二次は「数学＋面接」か「英語＋面接」を出願時に選ぶ。文理融合", url: "https://search.keinet.ne.jp/1075/general/exam_subject"}
-      - {name: 長崎大 環境科学部 環境科学B（理系）, schedule: 前期, border: "共テ54%・偏差値45.0", level: 安全寄り, note: "共テ中国語OK。二次は英・数・理から2つ（数＋理なら英語なし）", url: "https://search.keinet.ne.jp/1435/general/exam_subject"}
-      - {name: 宇都宮大 農学部 エコロジカル社会経済学科, schedule: 前期, border: "共テ60%・偏差値47.5", level: 実力相応, note: "共テ中国語OK。前期の二次は英語200（必須）＋数学か小論文。後期は面接だけ", url: "https://search.keinet.ne.jp/1090/general/exam_subject"}
+      - {name: 茨城大 地域未来共創学環, schedule: 前期, border: "共テ60%・偏差値50.0", level: 実力相応, note: "共テ中国語OK（200点そのまま）。二次は「数学＋面接」か「英語＋面接」を出願時に選ぶ。文理融合。🇨🇳 復旦大学・華東師範大学へ交換留学できる（全学部OK・授業料免除）", url: "https://search.keinet.ne.jp/1075/general/exam_subject"}
+      - {name: 長崎大 環境科学部 環境科学B（理系）, schedule: 前期, border: "共テ54%・偏差値45.0", level: 安全寄り, note: "共テ中国語OK。二次は英・数・理から2つ（数＋理なら英語なし）。🇨🇳 上海の7大学（同済・上海海洋・上海理工・華東師範など）へ交換留学できる（全学部OK）", url: "https://search.keinet.ne.jp/1435/general/exam_subject"}
+      - {name: 宇都宮大 農学部 エコロジカル社会経済学科, schedule: 前期, border: "共テ60%・偏差値47.5", level: 実力相応, note: "共テ中国語OK。前期の二次は英語200（必須）＋数学か小論文。後期は面接だけ。🇨🇳 復旦大学へ交換留学できる（全学部OK）", url: "https://search.keinet.ne.jp/1090/general/exam_subject"}
   - field: ✕ 共テの外国語が「英語だけ」の大学（中国語では出せない）
     color: "#5B6170"
     why: 前にここで紹介していたけれど、共テの外国語が英語指定だとわかった大学。中国語で受けたので、この学部には出願できない（大学の2027年度要項・Kei-Net で確認）。
@@ -476,7 +476,7 @@ recommend:
     kyotsu: 英・数ⅠA・数ⅡBC・国・理・地歴公民・情報Ⅰ（6教科8科目が基本）
     niji: 英＋数、または数のみ
     examples:
-      - {name: 広島大 情報科学部, schedule: 前期, border: "共テ67%・偏差値55.0（A型）", level: チャレンジ, note: "共テ中国語OK。めずらしく二次の外国語も中国語で受けられる（英・独・仏・中から1、400点）。数800", url: "https://www.hiroshima-u.ac.jp/index.php/system/files/297499/09_senbatsu_youkou.pdf"}
+      - {name: 広島大 情報科学部, schedule: 前期, border: "共テ67%・偏差値55.0（A型）", level: チャレンジ, note: "共テ中国語OK。めずらしく二次の外国語も中国語で受けられる（英・独・仏・中から1、400点）。数800。🇨🇳 上海師範大学へ交換留学できる（2名）", url: "https://www.hiroshima-u.ac.jp/index.php/system/files/297499/09_senbatsu_youkou.pdf"}
       - {name: 滋賀大 データサイエンス学部, schedule: 前期, border: "共テ65%・偏差値52.5", level: チャレンジ, note: "共テ中国語OK。二次は英300・数300（英語必須）。DS学部の先駆けで企業連携が多い", url: "https://search.keinet.ne.jp/1270/general/border_rate"}
       - {name: 群馬大 情報学部, schedule: 前期, border: "共テ60%・偏差値50.0", level: 実力相応, note: "共テ中国語OK。二次は数学だけでも受けられる（英・数から1つか2つ）", url: "https://search.keinet.ne.jp/1095/general/border_rate"}
   - field: 工学系（機械・電気・建築・化学）
@@ -503,14 +503,14 @@ recommend:
     niji: 英・数・理、看護は面接・小論文も
     examples:
       - {name: 新潟大 医学部 保健学科（看護）, schedule: 前期, border: "共テ58%・偏差値47.5", level: 実力相応, note: "共テ中国語OK。前期の二次は英語必須", url: "https://search.keinet.ne.jp/1180/general/border_rate"}
-      - {name: 長崎大 薬学部 薬科学, schedule: 前期, border: "共テ66%・偏差値52.5", level: チャレンジ, note: "共テ中国語OK。二次は英語あり", url: "https://search.keinet.ne.jp/1435/general/border_rate"}
+      - {name: 長崎大 薬学部 薬科学, schedule: 前期, border: "共テ66%・偏差値52.5", level: チャレンジ, note: "共テ中国語OK。二次は英語あり。🇨🇳 上海の7大学（同済・上海海洋・上海理工・華東師範など）へ交換留学できる（全学部OK）", url: "https://search.keinet.ne.jp/1435/general/border_rate"}
   - field: 環境・地域・新設学部
     color: "#D9822B"
     why: 環境コンサル・自治体・インフラ方面。2027年度は新設が多く、初年度は倍率が読みにくい（チャンスにもなる）。
     kyotsu: 大学による
     niji: 大学による
     examples:
-      - {name: 長崎大 環境科学部（理系B）, schedule: 前期, border: "共テ54%・偏差値45.0", level: 安全寄り, url: "https://search.keinet.ne.jp/1435/general/border_rate"}
+      - {name: 長崎大 環境科学部（理系B）, schedule: 前期, border: "共テ54%・偏差値45.0", level: 安全寄り, note: "🇨🇳 上海の7大学（同済・上海海洋・上海理工・華東師範など）へ交換留学できる（全学部OK）", url: "https://search.keinet.ne.jp/1435/general/border_rate"}
       - {name: 熊本県立大 半導体学部【2027新設】, schedule: 前期・後期, note: "定員60。2026年9月に設置認可。半導体産業が集まる熊本で学べる", url: "https://manabi.benesse.ne.jp/daigaku/school/2325/nyushi/handoutai/"}
       - {name: 福山市立大 情報工学部【2027新設】, schedule: 前期ほか, note: "定員80（前期25名予定）。デジタルものづくり／サイバーセキュリティ", url: "https://scan.netsecurity.ne.jp/article/2026/09/14/56212.html"}
       - {name: 兵庫県立大 環境人間学部【学科新設】, schedule: 前期, border: "共テ69%・偏差値52.5", level: チャレンジ, note: "建築地域デザイン学科・グリーンサイエンス学科"}
